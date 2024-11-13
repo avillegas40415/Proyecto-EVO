@@ -15,4 +15,14 @@ public class SubpaginasController {
     public String nosotros() {
         return "nosotros"; // Retorna el nombre de la vista (nosotros.html)
     }
+    
+    @GetMapping("/login")
+    public String login() {
+        return "login"; // Retorna el nombre de la vista (login.html)
+    }
+    
+    @GetMapping("/perfil")
+    public String perfil() {
+        return "perfil"; // Retorna el nombre de la vista (perfil.html)
+    }
 }

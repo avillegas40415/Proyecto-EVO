@@ -1967,6 +1967,7 @@ progress {
 }
 .form-label {
   margin-bottom: 0.5rem;
+  color: #fff;
 }
 
 .col-form-label {
@@ -6735,7 +6736,8 @@ textarea.form-control-lg {
 }
 
 .link-danger {
-  color: #dc3545 !important;
+  color: #f89c2e /* Color naranja */ !important;
+  text-decoration: none;
 }
 .link-danger:hover, .link-danger:focus {
   color: #b02a37 !important;
@@ -11458,6 +11460,58 @@ section#contact form#contactForm :-ms-input-placeholder {
 .fondo-tarjeta { /* Puedes cambiar el nombre de la clase */
   background-color: #757575; /* Ajusta el color según tu preferencia */
   padding: 2rem; /* Ajusta el padding según tu preferencia */
+}
+
+
+
+.descripcion-login { /* Puedes cambiar el nombre de la clase */
+  font-family: sans-serif; /* Fuente sans-serif */
+  font-size: 1rem; /* Ajusta el tamaño según tu preferencia */
+  color: white; /* Color blanco */
+  text-align: center; /* Centra el texto */
+}
+
+.descripcion-login a { /* Estilo para el enlace "Regístrate" */
+  color: #f89c2e; /* Color naranja */
+  text-decoration: none; /* Sin subrayado */
+  font-weight: 700; /* Negrita */
+}
+
+
+.profile-image {
+    width: 150px; /* Ajusta el tamaño de la imagen de perfil */
+    height: 150px;
+    border-radius: 50%; /* Para que la imagen sea circular */
+    object-fit: cover; /* Para que la imagen cubra el círculo */
+    margin: 0 auto; /* Centra la imagen horizontalmente */
+    display: block; /* Para que el margen automático funcione */
+    color: white;
+    padding-top: 10px; /* Ajusta el valor según tu necesidad */
+}
+.profile-name {
+    font-size: 1.8rem; /* Ajusta el tamaño de la fuente del nombre */
+    font-weight: bold;
+    text-align: center;
+    margin-top: 20px;
+    color: white;
+}
+.profile-role {
+    font-size: 1.2rem; /* Ajusta el tamaño de la fuente del rol */
+    text-align: center;
+    margin-top: 10px;
+    color: white;
+}
+.profile-description {
+    text-align: center;
+    margin-top: 20px;
+    color: white;
+}
+.training-days {
+    font-size: 2rem; /* Ajusta el tamaño de la fuente de los días de entrenamiento */
+    font-weight: bold;
+    text-align: center;
+    margin-top: 30px;
+    color: white;
 }
 
 .footer {
