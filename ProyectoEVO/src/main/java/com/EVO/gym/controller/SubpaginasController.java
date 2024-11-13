@@ -25,4 +25,9 @@ public class SubpaginasController {
     public String perfil() {
         return "perfil"; // Retorna el nombre de la vista (perfil.html)
     }
+    
+    @GetMapping("/dashboard")
+    public String dashboard() {
+        return "dashboard"; // Retorna el nombre de la vista (dashboard.html)
+    }
 }
