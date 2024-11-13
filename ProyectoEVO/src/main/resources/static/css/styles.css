@@ -62,7 +62,8 @@
   --bs-body-font-weight: 400;
   --bs-body-line-height: 1.5;
   --bs-body-color: #212529;
-  --bs-body-bg: #fff;
+  /*--bs-body-bg: #fff;*/
+  --bs-body-bg: #212529;
   --bs-border-width: 1px;
   --bs-border-style: solid;
   --bs-border-color: #dee2e6;
@@ -4157,8 +4158,8 @@ textarea.form-control-lg {
   --bs-card-spacer-x: 1rem;
   --bs-card-title-spacer-y: 0.5rem;
   --bs-card-border-width: 1px;
-  --bs-card-border-color: var(--bs-border-color-translucent);
-  --bs-card-border-radius: 0.375rem;
+  /*--bs-card-border-color: var(--bs-border-color-translucent); SE ELIMINA BORDE POR DISENO DE EVO*/
+  /*--bs-card-border-radius: 0.375rem;*/
   --bs-card-box-shadow: ;
   --bs-card-inner-border-radius: calc(0.375rem - 1px);
   --bs-card-cap-padding-y: 0.5rem;
@@ -4282,8 +4283,8 @@ textarea.form-control-lg {
 
 .card-img,
 .card-img-top {
-  border-top-left-radius: var(--bs-card-inner-border-radius);
-  border-top-right-radius: var(--bs-card-inner-border-radius);
+  /*border-top-left-radius: var(--bs-card-inner-border-radius);*/
+  /*border-top-right-radius: var(--bs-card-inner-border-radius);*/
 }
 
 .card-img,
@@ -11366,6 +11367,97 @@ section#contact form#contactForm :-ms-input-placeholder {
   font-family: "Montserrat", -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, "Helvetica Neue", Arial, sans-serif, "Apple Color Emoji", "Segoe UI Emoji", "Segoe UI Symbol", "Noto Color Emoji";
   font-weight: 700;
   color: #ced4da;
+}
+
+/*ESTILOS ESPECIALES PARA EL SITIO EVO*/
+
+
+
+.titulo-seccion { /* Puedes cambiar el nombre de la clase */
+  font-family: 'Roboto Slab', serif; /* Asegúrate de tener esta fuente en tu proyecto */
+  font-size: 2.5rem; /* Ajusta el tamaño según tu preferencia */
+  font-weight: 700; /* Negrita */
+  color: white; /* Color blanco */
+  text-align: center; /* Centra el texto */
+  margin-bottom: 1rem; /* Ajusta el margen inferior según tu preferencia */
+}
+
+.subtitulo-seccion { /* Puedes cambiar el nombre de la clase */
+  font-family: 'Roboto Slab', serif; /* Asegúrate de tener esta fuente en tu proyecto */
+  font-size: 1.2rem; /* Ajusta el tamaño según tu preferencia */
+  font-weight: 700; /* Negrita */
+  color: #f89c2e; /* Color naranja */
+  text-align: center; /* Centra el texto */
+  line-height: 1.6; /* Ajusta el interlineado según tu preferencia */
+}
+
+.texto-principal { /* Puedes cambiar el nombre de la clase */
+  font-family: 'Roboto Slab', serif; /* Asegúrate de tener esta fuente en tu proyecto */
+  font-size: 1.2rem; /* Ajusta el tamaño según tu preferencia */
+  font-weight: 400; /* Normal */
+  color: white; /* Color blanco */
+  text-align: center; /* Centra el texto */
+  line-height: 1.6; /* Ajusta el interlineado según tu preferencia */
+}
+
+/* ... otros estilos ... */
+
+.bg-naranja {
+  background-color: #f89c2e; /* Color naranja */
+}
+
+.card-title-nosotros {
+  font-weight: bold; /* Negrita */
+  color: white; /* Color blanco */
+}
+
+.card-text-nosotros {
+  color: white; /* Color blanco */
+}
+
+
+
+.tarjeta-nosotros {
+  background-color: #f89c2e; /* Color naranja */
+  min-height: 300px; /* Ajusta el valor según tu preferencia */
+}
+
+.tarjeta-nosotros .card-img-top {
+  height: 200px; /* Ajusta el valor según tu preferencia */
+  object-fit: cover;
+}
+
+.tarjeta-nosotros .imagen-tarjeta {
+  width: 100%; /* Ajusta el ancho de la imagen */
+  height: 200px; /* Ajusta el alto de la imagen */
+  object-fit: cover; 
+  margin-bottom: 1rem; /* Ajusta el margen inferior */
+  display: flex; /* Convierte el contenedor en un flex container */
+  align-items: center; /* Centra verticalmente el contenido */
+  justify-content: center; /* Centra horizontalmente el contenido (opcional) */
+}
+
+.tarjeta-nosotros .card-body {
+  padding: 2rem; /* Ajusta el valor según tu preferencia */
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+}
+
+.tarjeta-nosotros .card-title {
+  font-weight: bold; /* Negrita */
+  color: white; /* Color blanco */
+}
+
+.tarjeta-nosotros .card-text {
+  color: white; /* Color blanco */
+}
+
+
+
+.fondo-tarjeta { /* Puedes cambiar el nombre de la clase */
+  background-color: #757575; /* Ajusta el color según tu preferencia */
+  padding: 2rem; /* Ajusta el padding según tu preferencia */
 }
 
 .footer {

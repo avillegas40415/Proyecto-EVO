@@ -10,7 +10,78 @@ Click nbfs://nbhost/SystemFileSystem/Templates/Other/html.html to edit this temp
     </head>
         
     <body id="page-top">
-        <header th:replace="~{layout/plantilla :: nav-subpaginas}"/>      
+        <header th:replace="~{layout/plantilla :: nav-pruebas}"/> 
+        <!--<header th:replace="~{layout/plantilla :: header}"/>-->
+        
+        <section class="container mt-5">
+            <div class="row">
+                <div class="col-12 text-center">
+                    <div class="subtitulo-seccion">Sobre</div>
+                    <div class="titulo-seccion">Nosotros</div>
+                    <p class="texto-principal">Bienvenido a EVO, tu espacio dedicado al bienestar y al fitness.</p>
+                    <p class="texto-principal">Fundado en 2020, nuestro gimnasio ha crecido con la mision de inspirar y motivar a nuestra comunidad a llevar un estilo de vida activo y saludable.</p>
+                </div>
+            </div>
+            <div class="fondo-tarjeta row mt-4">
+              <div class="col-md-6">
+                <div class="card">
+                  <img src="/assets/img/about/evo2.jpg" class="card-img-top" alt="Imagen 1">
+                  <!--<div class="card-body">
+                    <h5 class="card-title">Título de la tarjeta 1</h5>
+                    <p class="card-text">Descripción de la tarjeta 1.</p>
+                  </div>-->
+                </div>
+              </div>
+              <div class="col-md-6">
+                <div class="card">
+                  <img src="/assets/img/about/evo1.jpg" class="card-img-top" alt="Imagen 2">
+                  <!--<div class="card-body">
+                    <h5 class="card-title">Título de la tarjeta 2</h5>
+                    <p class="card-text">Descripción de la tarjeta 2.</p>
+                  </div>-->
+                </div>
+              </div>
+            </div>
+        </section>
+        
+        
+        <!-- Seccion Tarjetas de "Nosotros" -->
+        <section class="container mt-5">
+
+            <div class="row mt-4">
+                <div class="col-md-6">
+                    <div class="card tarjeta-nosotros mb-3">
+                        <div class="row g-0"> 
+                            <div class="col-md-4">
+                                <img src="/assets/img/about/evo3.jpg" class="imagen-tarjeta" alt="Imagen 1">
+                            </div>
+                            <div class="col-md-8">
+                                <div class="card-body">
+                                    <h5 class="card-title-nosotros">Misión</h5>
+                                    <p class="card-text-nosotros">Promover el bienestar y la salud a través del fitness, ofreciendo un ambiente motivador y accesible para todos.</p>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-md-6">
+                    <div class="card tarjeta-nosotros mb-3">
+                        <div class="row g-0">
+                            <div class="col-md-4">
+                                <img src="/assets/img/about/evo4.jpg" class="imagen-tarjeta" alt="Imagen 2">
+                            </div>
+                            <div class="col-md-8">
+                                <div class="card-body">
+                                    <h5 class="card-title-nosotros">Visión</h5>
+                                    <p class="card-text-nosotros">Ser el gimnasio de referencia en la comunidad, reconocido por nuestra calidad de servicio, variedad de programas y compromiso con nuestros miembros.</p>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+        
         <footer th:replace="~{layout/plantilla :: footer}"/> 
         
         <script src="js/scripts.js"></script>
