@@ -19,4 +19,8 @@ public class SubpaginasController {
     public String dashboard() {
         return "dashboard"; // Retorna el nombre de la vista (dashboard.html)
     }
+         @GetMapping("/membresias")
+    public String membresias() {
+        return "membresias"; // Retorna el nombre de la vista (membresias.html)
+    }
 }
