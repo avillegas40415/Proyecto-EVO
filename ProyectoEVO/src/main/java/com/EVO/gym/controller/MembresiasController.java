@@ -12,6 +12,7 @@ import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.multipart.MultipartFile;
+import org.springframework.web.servlet.mvc.support.RedirectAttributes; //Pruebas guardar
 
 @Controller
 @Slf4j
@@ -21,11 +22,20 @@ public class MembresiasController {
     @Autowired
     private MembresiaService membresiaService;
     
+    /*@GetMapping("/listado")
+    public String inicio(Model model) {
+        var membresias = membresiaService.getMembresias(false);
+        model.addAttribute("membresias", membresias);
+        model.addAttribute("totalMembresias", membresias.size());
+        return "/membresias/listado";
+    }*/
+    
     @GetMapping("/listado")
     public String inicio(Model model) {
         var membresias = membresiaService.getMembresias(false);
         model.addAttribute("membresias", membresias);
         model.addAttribute("totalMembresias", membresias.size());
+        model.addAttribute("membresia", new Membresia()); // Añadir esta línea
         return "/membresias/listado";
     }
     
@@ -33,6 +43,7 @@ public class MembresiasController {
     public String membresiaNuevo(Membresia membresia) {
         return "/membresias/modifica";
     }
+
     
     /*@GetMapping("/modificar/{idMembresia}")
     public String membresiaModificar(Membresia membresia, Model model) {
@@ -52,32 +63,25 @@ public class MembresiasController {
         model.addAttribute("membresia", membresia);
         return "/membresia/modifica";
     }
-
+    
     /*@Autowired
     private FirebaseStorageServiceImp firebaseStorageService;*/
     
-    /*@PostMapping("/guardar")
-    public String categoriaGuardar(Categoria categoria,
-            @RequestParam("imagenFile") MultipartFile imagenFile) {        
-        if (!imagenFile.isEmpty()) {
-            categoriaService.save(categoria);
-            categoria.setRutaImagen(
-                    firebaseStorageService.cargaImagen(
-                            imagenFile, 
-                            "categoria", 
-                            categoria.getIdCategoria()));
-        }
-        categoriaService.save(categoria);
-        return "redirect:/categoria/listado";
+    @PostMapping("/guardar")
+    public String membresiaGuardar(Membresia membresia){
+
+        membresiaService.save(membresia);
+        return "redirect:/membresias/listado";
     }
 
-    @GetMapping("/eliminar/{idCategoria}")
-    public String categoriaEliminar(Categoria categoria) {
-        membresiaService.delete(categoria);
-        return "redirect:/categoria/listado";
+
+    @GetMapping("/eliminar/{idMembresia}")
+    public String membresiaEliminar(Membresia membresia) {
+        membresiaService.delete(membresia);
+        return "redirect:/membresias/listado";
     }
 
-    @GetMapping("/modificar/{idCategoria}")
+    /*@GetMapping("/modificar/{idCategoria}")
     public String categoriaModificar(Categoria categoria, Model model) {
         categoria = membresiaService.getCategoria(categoria);
         model.addAttribute("categoria", categoria);

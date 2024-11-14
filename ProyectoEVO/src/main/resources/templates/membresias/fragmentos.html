@@ -10,12 +10,12 @@
         
         <main th:fragment="listadoMembresias" id="membresias">
                     <div class="d-flex align-items-center justify-content-between mt-4 mb-0">
-                       <a class="btn btn-primary" href="login.html">Agregar Membresía</a>
+                       <!--<a class="btn btn-primary" href="login.html">Agregar Membresía</a>-->
                        <button 
                             type="button" 
                             class="btn btn-primary" 
                             data-bs-toggle="modal" 
-                            data-bs-target="#agregarCategoria">
+                            data-bs-target="#agregarMembresia">
                             <i class="fas fa-plus"></i> Agregar
                         </button>
                     </div>
@@ -70,8 +70,8 @@
                 </main>
         
         <!-- Agregar membresia -->
-        <section th:fragment="agregarCategoria">
-            <div id="agregarCategoria" 
+        <section th:fragment="agregarMembresia">
+            <div id="agregarMembresia" 
                  class="modal fade" 
                  tabindex="-1" 
                  aria-labelledby="exampleModalLabel" 
@@ -79,24 +79,27 @@
                 <div class="modal-dialog modal-md">
                     <div class="modal-content">
                         <div class="modal-header bg-info text-white">
-                            <h5 class="modal-title">[[#{categoria.agregar}]]</h5>
+                            <h5 class="modal-title">Agregar membresia</h5>
                             <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
                         </div> 
-                        <form th:action="@{/categoria/guardar}" th:object="${categoria}"
+                        <form th:action="@{/membresias/guardar}" th:object="${membresia}"
                               method="POST" class="was-validated" enctype="multipart/form-data">
                             <div class="modal-body">
                                 <div class="mb-3">
-                                    <label for="descripcion">[[#{categoria.descripcion}]]</label>
+                                    <label for="nombre">Nombre</label>
+                                    <input type="text" class="form-control" name="nombre" required="true"/>
+                                </div>
+                                <div class="mb-3">
+                                    <label for="descripcion">Descripcion</label>
                                     <input type="text" class="form-control" name="descripcion" required="true"/>
                                 </div>
                                 <div class="mb-3">
-                                    <label for="activo">[[#{categoria.activo}]]</label>
-                                    <input class="form-check-input" type="checkbox" name="activo" id="activo"/>
+                                    <label for="precio">Precio</label>
+                                    <input type="text" class="form-control" name="precio" required="true"/>
                                 </div>
                                 <div class="mb-3">
-                                    <label for="imagen">[[#{categoria.rutaImagen}]]</label>
-                                    <input class="form-control" type="file" name="imagenFile" onchange="readURL(this);"/>
-                                    <img id="blah" src="#" alt="your image" height="200"/>
+                                    <label for="activo">Activo</label>
+                                    <input class="form-check-input" type="checkbox" name="activo" id="activo"/>
                                 </div>
                             </div>
                             <div class="modal-footer">
@@ -163,7 +166,7 @@
                         </a>
                     </div>
                     <div class="col-md-4 d-grid">                                
-                        <a th:href="@{/membresias/eliminar/}+${mrembresia.idMembresia}"
+                        <a th:href="@{/membresias/eliminar/}+${membresia.idMembresia}"
                            class="btn btn-danger">
                             <i class="fas fa-trash"></i> Eliminar
                         </a>

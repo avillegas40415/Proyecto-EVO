@@ -10,6 +10,7 @@
         <div id="layoutSidenav">
             <div th:replace="~{layout/plantillaDashboard :: sidenav-dash}"/>
             <div id="layoutSidenav_content">
+                <section th:replace="~{membresias/fragmentos :: agregarMembresia}"/> 
                 <main th:replace="~{membresias/fragmentos :: listadoMembresias}"></main>
                 <footer th:replace="~{layout/plantillaDashboard :: footer-dash}"></footer>
             </div>
