@@ -24,11 +24,14 @@ public class MembresiaServiceImp implements MembresiaService{
         return lista;
     }
     
-    @Override
+    //@Override
     @Transactional(readOnly = true)
-    public Membresia getMembresia(Membresia membresia) {
-        return membresiaDao.findById(membresia.getIdMembresia()).orElse(null);
+    public Membresia getMembresia(Long idMembresia) {
+        return membresiaDao.findById(idMembresia).orElse(null);
     }
+    /*public Membresia getMembresia(Membresia membresia) {
+        return membresiaDao.findById(membresia.getIdMembresia()).orElse(null);
+    }*/
 
     @Override
     @Transactional
@@ -41,5 +44,11 @@ public class MembresiaServiceImp implements MembresiaService{
     public void delete(Membresia membresia) {
         membresiaDao.delete(membresia);
     }
-    
+
+    @Override
+    public Membresia getMembresia(Membresia membresia) {
+        throw new UnsupportedOperationException("Not supported yet."); // Generated from nbfs://nbhost/SystemFileSystem/Templates/Classes/Code/GeneratedMethodBody
+    }
+
+
 }

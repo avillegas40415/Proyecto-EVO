@@ -34,6 +34,11 @@ public class Membresia implements Serializable {
         return idMembresia;
     }
     
+    // Agregar el método setIdMembresia
+    public void setIdMembresia(Long idMembresia) {
+        this.idMembresia = idMembresia;
+    }
+    
     public String getNombre() {
         return nombre;
     }

@@ -46,7 +46,7 @@
                                     </tfoot>
                                     <tbody>
                                         <tr th:each="membresias, contador : ${membresias}">
-                                            <td>[[${contador.count}]]</td>
+                                            <td th:text="${membresia.idMembresia}">[[${contador.count}]]</td> <!-- Pruebas-->
                                             <td>[[${membresias.nombre}]]</td>
                                             <td>[[${membresias.descripcion}]]</td>
                                             <td>[[${membresias.precio}]]</td>
@@ -54,7 +54,8 @@
                                             <td><a th:href="@{/membresias/eliminar/}+${membresias.idMembresia}"
                                                    class="btn btn-danger">
                                                     <i class="fas fa-trash"></i> Eliminar</a>
-                                                <a th:href="@{/membresias/modificar/}+${membresias.idMembresia}"
+                                                <!--th:href="@{/membresias/modificar/}+${membresias.idMembresia}"-->
+                                                <a th:href="@{/membresias/modificar(idMembresia=${membresia.idMembresia})}"
                                                    class="btn btn-success">
                                                     <i class="fas fa-pencil"></i> Actualizar</a></td>
                                         </tr>

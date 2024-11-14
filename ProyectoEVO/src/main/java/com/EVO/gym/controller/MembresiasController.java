@@ -34,9 +34,21 @@ public class MembresiasController {
         return "/membresias/modifica";
     }
     
-    @GetMapping("/modificar/{idMembresia}")
+    /*@GetMapping("/modificar/{idMembresia}")
     public String membresiaModificar(Membresia membresia, Model model) {
         membresia = membresiaService.getMembresia(membresia);
+        model.addAttribute("membresia", membresia);
+        return "/membresia/modifica";
+    }*/
+    
+    public String membresiaModificar(@RequestParam("idMembresia") Long idMembresia, Model model) {
+        // Crear una instancia de Membresia y asignarle el ID
+        Membresia membresia = new Membresia();
+        membresia.setIdMembresia(idMembresia);
+
+        // Obtener la membresía por ID usando la instancia de Membresia
+        membresia = membresiaService.getMembresia(membresia); 
+
         model.addAttribute("membresia", membresia);
         return "/membresia/modifica";
     }
