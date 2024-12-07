@@ -31,8 +31,20 @@ public class SubpaginasController {
         return "dashboard"; // Retorna el nombre de la vista (dashboard.html)
     }
     
-    /*@GetMapping("/membresias")
+    @GetMapping("/membresias")
     public String membresias() {
         return "membresias"; // Retorna el nombre de la vista (membresias.html)
-    }*/
+    }
+     @GetMapping("/productosAdmin")
+    public String productosAdmin() {
+        return "productosAdmin"; // Retorna el nombre de la vista (productosAdmin.html)
+    }
+         @GetMapping("/usuarios")
+    public String usuarios() {
+        return "usuarios"; // Retorna el nombre de la vista (usuarios.html)
+    }
+         @GetMapping("/noticiasAdmin")
+    public String noticiasAdmin() {
+        return "noticiasAdmin"; // Retorna el nombre de la vista (noticias.html)
+    }
 }
