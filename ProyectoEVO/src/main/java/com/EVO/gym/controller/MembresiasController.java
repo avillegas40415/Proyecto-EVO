@@ -3,7 +3,6 @@ package com.EVO.gym.controller;
 import com.EVO.gym.domain.Membresia;
 import com.EVO.gym.service.MembresiaService;
 import com.EVO.gym.service.impl.MembresiaServiceImp;
-import java.util.List;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
@@ -30,7 +29,6 @@ public class MembresiasController {
         model.addAttribute("totalMembresias", membresias.size());
         return "/membresias/listado";
     }*/
-    
     
     @GetMapping("/listado")
     public String inicio(Model model) {
