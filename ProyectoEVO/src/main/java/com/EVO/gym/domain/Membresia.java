@@ -19,7 +19,11 @@ public class Membresia implements Serializable {
     private String nombre;
     private String descripcion;
     private double precio;
+    private boolean destacar;
     private boolean activo;
+    
+    @OneToMany(mappedBy = "membresia", fetch = FetchType.LAZY, cascade = CascadeType.ALL)
+    private List<Beneficio> beneficios;
     
     public Membresia() {
     }
@@ -63,6 +67,10 @@ public class Membresia implements Serializable {
         this.precio = precio;
     }
     
+    public boolean getDestacar(){
+        return destacar;
+    }
+    
     public boolean isActivo() {
         return activo;
     }
@@ -70,4 +78,14 @@ public class Membresia implements Serializable {
     public void setActivo(boolean activo) {
         this.activo = activo;
     }
+    
+    
+    public List<Beneficio> getBeneficios() {
+    return beneficios;
 }
+
+    public void setBeneficios(List<Beneficio> beneficios) {
+        this.beneficios = beneficios;
+    }
+}
+    
