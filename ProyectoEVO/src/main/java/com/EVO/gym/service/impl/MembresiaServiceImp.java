@@ -49,10 +49,10 @@ public class MembresiaServiceImp implements MembresiaService{
     
     
     
-    //@Override
+    @Override
     @Transactional(readOnly = true)
-    public Membresia getMembresia(Long idMembresia) {
-        return membresiaDao.findById(idMembresia).orElse(null);
+    public Membresia getMembresia(Membresia membresia) {
+        return membresiaDao.findById(membresia.getIdMembresia()).orElse(null);
     }
     /*public Membresia getMembresia(Membresia membresia) {
         return membresiaDao.findById(membresia.getIdMembresia()).orElse(null);
@@ -70,13 +70,8 @@ public class MembresiaServiceImp implements MembresiaService{
         membresiaDao.delete(membresia);
     }
 
-    @Override
-    public Membresia getMembresia(Membresia membresia) {
-        throw new UnsupportedOperationException("Not supported yet."); // Generated from nbfs://nbhost/SystemFileSystem/Templates/Classes/Code/GeneratedMethodBody
-    }
-    
     //@Override
-    @Transactional(readOnly = true)
+    /*@Transactional(readOnly = true)
     public Membresia getMembresiaWithBeneficios(Long idMembresia) {
         Membresia membresia = membresiaDao.findById(idMembresia).orElse(null); // Obtener la membresía por ID
 
@@ -85,6 +80,6 @@ public class MembresiaServiceImp implements MembresiaService{
         membresia.setBeneficios(beneficios); // Asignar los beneficios a la membresía
 
         return membresia;
-    }
+    }*/
 
 }

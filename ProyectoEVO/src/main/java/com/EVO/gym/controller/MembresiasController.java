@@ -54,7 +54,7 @@ public class MembresiasController {
         return "/membresia/modifica";
     }*/
     
-    public String membresiaModificar(@RequestParam("idMembresia") Long idMembresia, Model model) {
+    /*public String membresiaModificar(@RequestParam("idMembresia") Long idMembresia, Model model) {
         // Crear una instancia de Membresia y asignarle el ID
         Membresia membresia = new Membresia();
         membresia.setIdMembresia(idMembresia);
@@ -64,7 +64,7 @@ public class MembresiasController {
 
         model.addAttribute("membresia", membresia);
         return "/membresia/modifica";
-    }
+    }*/
     
     /*@Autowired
     private FirebaseStorageServiceImp firebaseStorageService;*/
@@ -83,11 +83,11 @@ public class MembresiasController {
         return "redirect:/membresias/listado";
     }
 
-    /*@GetMapping("/modificar/{idCategoria}")
-    public String categoriaModificar(Categoria categoria, Model model) {
-        categoria = membresiaService.getCategoria(categoria);
-        model.addAttribute("categoria", categoria);
-        return "/categoria/modifica";
-    }*/
+    @GetMapping("/modificar/{idMembresia}")
+    public String categoriaModificar(Membresia membresia, Model model) {
+        membresia = membresiaService.getMembresia(membresia);
+        model.addAttribute("membresias", membresia);
+        return "/membresias/modifica";
+    }
     
 }

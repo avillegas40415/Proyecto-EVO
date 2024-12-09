@@ -22,14 +22,14 @@ public class Membresia implements Serializable {
     private boolean destacar;
     private boolean activo;
     
-    /*
+    
     @OneToMany(mappedBy = "membresia", fetch = FetchType.LAZY, cascade = CascadeType.ALL)
     private List<Beneficio> beneficios;
-*/
-    
+
+    /*
     @OneToMany
     @JoinColumn(name="id_mem")
-    List<Beneficio> beneficios;
+    List<Beneficio> beneficios;*/
     
     public Membresia() {
     }
