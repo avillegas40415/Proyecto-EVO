@@ -22,8 +22,14 @@ public class Membresia implements Serializable {
     private boolean destacar;
     private boolean activo;
     
+    /*
     @OneToMany(mappedBy = "membresia", fetch = FetchType.LAZY, cascade = CascadeType.ALL)
     private List<Beneficio> beneficios;
+*/
+    
+    @OneToMany
+    @JoinColumn(name="id_mem")
+    List<Beneficio> beneficios;
     
     public Membresia() {
     }
@@ -69,6 +75,10 @@ public class Membresia implements Serializable {
     
     public boolean getDestacar(){
         return destacar;
+    }
+    
+    public void setDestacar(boolean destacar){
+        this.destacar = destacar;
     }
     
     public boolean isActivo() {

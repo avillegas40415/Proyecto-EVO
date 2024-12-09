@@ -44,7 +44,11 @@
                                 Inicio
                             </a>
                             <div class="sb-sidenav-menu-heading">Utilidades</div>
-                            <a class="nav-link" href="#">
+                            <a class="nav-link" th:href="@{/categorias/listado}">
+                                <div class="sb-nav-link-icon"><i class="fas fa-chart-area"></i></div>
+                                Categorias
+                            </a>
+                            <a class="nav-link" th:href="@{/productos/listado}">
                                 <div class="sb-nav-link-icon"><i class="fas fa-chart-area"></i></div>
                                 Productos
                             </a>
@@ -56,8 +60,8 @@
                                 <div class="sb-nav-link-icon"><i class="fas fa-table"></i></div>
                                 Usuarios 
                             </a>
-                            <a class="nav-link" href="#">
-                                <div class="sb-nav-link-icon"><i class="fas fa-table"></i></div>
+                            <a class="nav-link" th:href="@{/noticias/listado}">
+                                <div class="sb-nav-link-icon" ><i class="fas fa-table"></i></div>
                                 Noticias 
                             </a>
                         </div>

@@ -11,7 +11,37 @@ Click nbfs://nbhost/SystemFileSystem/Templates/Other/html.html to edit this temp
         
     <body id="page-top">
         <header th:replace="~{layout/plantilla :: nav-index}"/>
-        <header th:replace="~{layout/plantilla :: header}"/>        
+        <header th:replace="~{layout/plantilla :: header}"/> 
+        
+        <section>
+            
+            <div class="latest-news container-fluid">
+                <div class="container">
+
+                  <div class="row">
+                    <div class="col-sm-8">
+                      <div class="row-title">
+                        Novedades EVO
+                      </div>
+                    </div>
+                  </div>
+
+                  <div class="row">
+                    <div class="col-sm-6 col-md-4" th:each="noticia : ${noticias}">
+                      <div class="post-box white-bg">
+                        <div class="post-img"></div>
+                        <span class="badge badge-danger">Hot</span>
+                        <div class="post-title"><span th:text="${noticia.titulo}"></span></div>
+                        <div class="post-link"><a href="#">Leer mas</a></div>
+                      </div>
+                    </div>
+                  </div>
+
+                </div>
+              </div>
+            
+        </section>
+        
         <footer th:replace="~{layout/plantilla :: footer}"/> 
         
         <script src="js/scripts.js"></script>

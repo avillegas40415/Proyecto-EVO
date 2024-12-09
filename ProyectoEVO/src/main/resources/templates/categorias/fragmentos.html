@@ -7,29 +7,26 @@
     </head>
     <body>
         
-        
-        <main th:fragment="listadoMembresias" id="membresias">
+        <main th:fragment="listadoCategorias" id="categorias">
                     <div class="d-flex align-items-center justify-content-between mt-4 mb-0">
-                       <!--<a class="btn btn-primary" href="login.html">Agregar Membresía</a>-->
+                       <!--<a class="btn btn-primary" href="login.html">Agregar Noticia</a>-->
                        <button 
                             type="button" 
                             class="btn btn-primary" 
                             data-bs-toggle="modal" 
-                            data-bs-target="#agregarMembresia">
+                            data-bs-target="#agregarCategoria">
                             <i class="fas fa-plus"></i> Agregar
                         </button>
                     </div>
                     <div class="container-fluid px-4">
-                        <h1 class="mt-4">Membresías Evo</h1>
+                        <h1 class="mt-4">Categorias de Productos</h1>
                         <div class="card mb-4">
-                            <div class="card-body" th:if="${membresias != null and !membresias.empty}"> <!-- Empiezan pruebas de listar membresias-->
+                            <div class="card-body" th:if="${categorias != null and !categorias.empty}"> <!-- Empiezan pruebas de listar membresias-->
                                 <table id="datatablesSimple">
                                     <thead>
                                         <tr>
                                             <th>#</th>
-                                            <th>Nombre</th>
-                                            <th>Descripción</th>
-                                            <th>Precio</th>
+                                            <th>Descripcion</th>
                                             <th>Estado</th>
                                             <th></th>
                                         </tr>
@@ -37,41 +34,36 @@
                                     <tfoot>
                                         <tr>
                                             <th>#</th>
-                                            <th>Nombre</th>
-                                            <th>Descripción</th>
-                                            <th>Precio</th>
+                                            <th>Descripcion</th>
                                             <th>Estado</th>
                                             <th></th>
                                         </tr>
                                     </tfoot>
                                     <tbody>
-                                        <tr th:each="membresias, contador : ${membresias}">
+                                        <tr th:each="categorias, contador : ${categorias}">
                                             <td>[[${contador.count}]]</td> <!-- Pruebas-->
-                                            <td>[[${membresias.nombre}]]</td>
-                                            <td>[[${membresias.descripcion}]]</td>
-                                            <td>[[${membresias.precio}]]</td>
-                                            <td th:text="${membresias.activo} ? 'Activa' : 'Inactiva'"/>
-                                            <td><a th:href="@{/membresias/eliminar/}+${membresias.idMembresia}"
+                                            <td>[[${categorias.descripcion}]]</td>
+                                            <td th:text="${categorias.activo} ? 'Activa' : 'Inactiva'"/>
+                                            <td><a th:href="@{/categorias/eliminar/}+${categorias.idCategoria}"
                                                    class="btn btn-danger">
                                                     <i class="fas fa-trash"></i> Eliminar</a>
                                                 <!--th:href="@{/membresias/modificar/}+${membresias.idMembresia}"-->
-                                                <a th:href="@{/membresias/modificar/}+${membresias.idMembresia}"
+                                                <a th:href="@{/categorias/modificar/}+${categorias.idCategoria}"
                                                    class="btn btn-success">
                                                     <i class="fas fa-pencil"></i> Actualizar</a></td>
                                         </tr>
                                     </tbody>
                                 </table>
                             </div>
-                            <div class="text-center p-2" th:if="${membresias == null or membresias.empty}">
+                            <div class="text-center p-2" th:if="${categorias == null or categorias.empty}">
                                 <span>Lista Vacia</span>
                             </div>
                         </div>
                     </div>
                 </main>
         
-        <!-- Agregar membresia -->
-        <section th:fragment="agregarMembresia">
-            <div id="agregarMembresia" 
+        <section th:fragment="agregarCategoria">
+            <div id="agregarCategoria" 
                  class="modal fade" 
                  tabindex="-1" 
                  aria-labelledby="exampleModalLabel" 
@@ -79,27 +71,19 @@
                 <div class="modal-dialog modal-md">
                     <div class="modal-content">
                         <div class="modal-header bg-info text-white">
-                            <h5 class="modal-title">Agregar membresia</h5>
+                            <h5 class="modal-title">Agregar categoria</h5>
                             <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
                         </div> 
-                        <form th:action="@{/membresias/guardar}" th:object="${membresia}"
+                        <form th:action="@{/categorias/guardar}" th:object="${categoria}"
                               method="POST" class="was-validated" enctype="multipart/form-data">
                             <div class="modal-body">
                                 <div class="mb-3">
-                                    <label for="nombre">Nombre</label>
-                                    <input type="text" class="form-control" name="nombre" required="true"/>
-                                </div>
-                                <div class="mb-3">
-                                    <label for="descripcion">Descripcion</label>
+                                    <label for="descripcion">Categoria</label>
                                     <input type="text" class="form-control" name="descripcion" required="true"/>
                                 </div>
                                 <div class="mb-3">
-                                    <label for="precio">Precio</label>
-                                    <input type="text" class="form-control" name="precio" required="true"/>
-                                </div>
-                                <div class="mb-3">
-                                    <label for="destacar">Destacar</label>
-                                    <input class="form-check-input" type="checkbox" name="destacar" id="activo"/>
+                                    <label for="rutaImagen">Imagen</label>
+                                    <input type="text" class="form-control" name="rutaImagen" required="false"/>
                                 </div>
                                 <div class="mb-3">
                                     <label for="activo">Activo</label>
@@ -114,19 +98,20 @@
                 </div>
             </div>
         </section>
-
+        
+       
         <!-- 4 Fragmento que se utiliza en la página modifca.html -->
-        <section th:fragment="editarMembresia">
+        <section th:fragment="editarNoticia">
             <div class="row">
                 <div class="col-md-2"></div>
                 <div class="col-md-8">
                     <form method="POST"
-                          th:action="@{/membresias/guardar}" 
-                          th:object="${membresias}"
+                          th:action="@{/noticias/guardar}" 
+                          th:object="${noticias}"
                           class="was-validated"                          
                           enctype="multipart/form-data">
-                        <input type="hidden" name="idMembresia" th:field="*{idMembresia}"/>
-                        <section th:replace="~{membresias/fragmentos :: botonesEditar}"/>
+                        <input type="hidden" name="idNoticia" th:field="*{idNoticia}"/>
+                        <section th:replace="~{noticias/fragmentos :: botonesEditar}"/>
                         <div id=details>
                             <div class="container">
                                 <div class="row">
@@ -159,18 +144,17 @@
                 </div>
             </div>
         </section>
-
         <!-- 5 Fragmento que se utiliza en el fragmento anterior -->
         <section th:fragment="botonesEditar">
             <div class="container py-4 mb-4 bg-light">
                 <div class="row">
                     <div class="col-md-4 d-grid">
-                        <a th:href="@{/membresias/listado}" class="btn btn-primary">
+                        <a th:href="@{/noticias/listado}" class="btn btn-primary">
                             <i class="fas fa-arrow-left"></i> Regresar
                         </a>
                     </div>
                     <div class="col-md-4 d-grid">                                
-                        <a th:href="@{/membresias/eliminar/}+${membresia.idMembresia}"
+                        <a th:href="@{/noticias/eliminar/}+${noticia.idNoticia}"
                            class="btn btn-danger">
                             <i class="fas fa-trash"></i> Eliminar
                         </a>

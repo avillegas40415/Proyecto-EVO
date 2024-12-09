@@ -2,7 +2,7 @@
 <html xmlns="http://www.w3.org/1999/xhtml"
       xmlns:th="http://www.thymeleaf.org">
     <head th:replace="~{layout/plantillaDashboard :: head-dash}">
-        <title>Administrador Evo - Membresias</title>
+        <title>Administrador Evo - Productos</title>
     </head>
     <body>
         <nav th:replace="~{layout/plantillaDashboard :: nav-dash}"/>
@@ -10,8 +10,8 @@
         <div id="layoutSidenav">
             <div th:replace="~{layout/plantillaDashboard :: sidenav-dash}"/>
             <div id="layoutSidenav_content">
-                <section th:replace="~{membresias/fragmentos :: agregarMembresia}"/> 
-                <main th:replace="~{membresias/fragmentos :: listadoMembresias}"></main>
+                <section th:replace="~{productos/fragmentos :: agregarProducto}"/> 
+                <main th:replace="~{productos/fragmentos :: listadoProductos}"></main>
                 <footer th:replace="~{layout/plantillaDashboard :: footer-dash}"></footer>
             </div>
         </div>
@@ -21,7 +21,6 @@
         <script src="/js/scriptsAdmin.js"></script>
         <script src="/js/datatables-simple-demo.js"></script>
         
-
     </body>
     
 </html>
