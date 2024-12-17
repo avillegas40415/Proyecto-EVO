@@ -13,38 +13,40 @@ Click nbfs://nbhost/SystemFileSystem/Templates/Other/html.html to edit this temp
         <header th:replace="~{layout/plantilla :: nav-index}"/>
         <header th:replace="~{layout/plantilla :: header}"/> 
         
-        <section>
-            
-            <div class="latest-news container-fluid">
-                <div class="container">
-
-                  <div class="row">
-                    <div class="col-sm-8">
-                      <div class="row-title">
-                        Novedades EVO
-                      </div>
+        <section th:replace="~{noticias/fragmentos :: listarNovedades}"/>
+        
+        <div class="modal fade" id="leerNoticia" tabindex="-1" aria-labelledby="leerNoticiaLabel" aria-hidden="true">
+            <div class="modal-dialog">
+                <div class="modal-content">
+                    <div class="modal-header">
+                        <h5 class="modal-title" id="leerNoticiaLabel"></h5>
+                        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
                     </div>
-                  </div>
-
-                  <div class="row">
-                    <div class="col-sm-6 col-md-4" th:each="noticia : ${noticias}">
-                      <div class="post-box white-bg">
-                        <div class="post-img"></div>
-                        <span class="badge badge-danger">Hot</span>
-                        <div class="post-title"><span th:text="${noticia.titulo}"></span></div>
-                        <div class="post-link"><a href="#">Leer mas</a></div>
-                      </div>
+                    <div class="modal-body">
+                        <p></p>
                     </div>
-                  </div>
-
+                    <div class="modal-footer">
+                        <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Cerrar</button>
+                    </div>
                 </div>
-              </div>
-            
-        </section>
+            </div>
+        </div>
         
         <footer th:replace="~{layout/plantilla :: footer}"/> 
         
         <script src="js/scripts.js"></script>
+        <script>
+  $('.leer-mas').click(function() {
+    var noticiaId = $(this).data('id');
+    $.ajax({
+      url: '/noticias/' + noticiaId,
+      success: function(noticia) {
+        $('#leerNoticiaLabel').text(noticia.titulo);
+        $('#leerNoticia .modal-body p').text(noticia.texto);
+      }
+    });
+  });
+</script>
         <script>
             
             document.addEventListener('DOMContentLoaded', (event) => {

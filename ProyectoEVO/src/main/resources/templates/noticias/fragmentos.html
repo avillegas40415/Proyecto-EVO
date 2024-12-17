@@ -69,6 +69,8 @@
                     </div>
                 </main>
         
+        
+        
         <!-- Agregar noticia -->
         <section th:fragment="agregarNoticia">
             <div id="agregarNoticia" 
@@ -173,6 +175,63 @@
                         <button type="submit" class="btn btn-success">
                             <i class="fas fa-check"></i> Guardar
                         </button>
+                    </div>
+                </div>
+            </div>
+        </section>
+        
+        
+        
+        <!-- Inicia listar novedades en Index --> 
+        <section th:fragment="listarNovedades">
+            <div class="latest-news container-fluid">
+                <div class="container">
+                    <div class="row">
+                        <div class="col-sm-8">
+                            <div class="row-title">
+                              Novedades EVO Prueba
+                            </div>
+                        </div>
+                    </div>
+                    <div class="row">
+                        <div class="col-sm-6 col-md-4" th:each="noticia : ${noticias}">
+                            <div class="post-box white-bg">
+                                <div class="post-img"></div>
+                                <span class="badge badge-danger">Nueva</span>
+                                <div class="post-title"><span th:text="${noticia.titulo}"></span></div>
+                                <!--<div class="post-link"><a href="#">Leer mas</a></div>
+                                <button 
+                                    type="button" 
+                                    class="btn btn-primary" 
+                                    data-bs-toggle="modal" 
+                                    data-bs-target="#leerNoticia">
+                                    <i class="fas fa-plus"></i> Leer mas
+                                </button>-->
+                                
+                                <button class="btn btn-primary leer-mas" data-bs-toggle="modal" data-bs-target="#leerNoticia" 
+                    th:attr="data-id=${noticia.idNoticia}">Leer más</button>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+        <!-- Termina listar novedades en Index --> 
+        
+        <!-- Vista completa novedad en Index -->
+        <section th:fragment="leerNoticia">
+            <div id="leerNoticia" 
+                 class="modal fade" 
+                 tabindex="-1" 
+                 aria-labelledby="exampleModalLabel" 
+                 aria-hidden="true">
+                <div class="modal-dialog modal-md">
+                    <div class="modal-content">
+                        <div class="modal-header bg-info text-white">
+                            <h5 class="modal-title"><span th:text="${noticia.titulo}"></span></h5>
+                            <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                        </div> 
+                        
                     </div>
                 </div>
             </div>

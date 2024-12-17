@@ -45,4 +45,9 @@ public class NoticiaServiceImp implements NoticiaService{
     public Noticia getNoticia(Noticia noticia) {
         throw new UnsupportedOperationException("Not supported yet."); // Generated from nbfs://nbhost/SystemFileSystem/Templates/Classes/Code/GeneratedMethodBody
     }
+    
+    @Override
+    public Noticia getNoticiaById(Long id) {
+        return noticiaDao.findById(id).orElse(null);
+    }
 }

@@ -17,4 +17,6 @@ public interface NoticiaService {
     // Se elimina la Membresia que tiene el id pasado por parámetro
     public void delete(Noticia noticia);
     
+    public Noticia getNoticiaById(Long id);
+    
 }
