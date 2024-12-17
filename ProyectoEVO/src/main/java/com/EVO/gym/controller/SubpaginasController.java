@@ -6,6 +6,7 @@ import com.EVO.gym.domain.Producto;
 import com.EVO.gym.service.MembresiaService;
 import com.EVO.gym.service.NoticiaService;
 import com.EVO.gym.service.ProductoService;
+import java.util.Comparator;
 import java.util.List;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -25,6 +26,7 @@ public class SubpaginasController {
     @GetMapping("/index")
     public String index(Model model) {
         List<Noticia> noticias = noticiaService.getNoticias(true); // Obtener las membresías
+        noticias.sort(Comparator.comparing(Noticia::getIdNoticia).reversed()); // Ordenar por idNoticia descendente
         model.addAttribute("noticias", noticias); // Agregarlas al modelo
         return "index"; // Retorna el nombre de la vista (index.html)
     }

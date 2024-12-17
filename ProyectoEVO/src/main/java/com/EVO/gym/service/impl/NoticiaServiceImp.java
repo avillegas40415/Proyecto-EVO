@@ -23,14 +23,15 @@ public class NoticiaServiceImp implements NoticiaService{
         return lista;
     }
     
-    //@Override
-    @Transactional(readOnly = true)
-    public Noticia getNoticia(Long idNoticia) {
+    
+    /*public Noticia getNoticia(Long idNoticia) {
         return noticiaDao.findById(idNoticia).orElse(null);
-    }
-    /*public Membresia getMembresia(Membresia membresia) {
-        return membresiaDao.findById(membresia.getIdMembresia()).orElse(null);
     }*/
+    @Override
+    @Transactional(readOnly = true)
+    public Noticia getNoticia(Noticia noticia) {
+        return noticiaDao.findById(noticia.getIdNoticia()).orElse(null);
+    }
     @Override
     @Transactional
     public void save(Noticia noticia) {
@@ -41,10 +42,11 @@ public class NoticiaServiceImp implements NoticiaService{
     public void delete(Noticia noticia) {
         noticiaDao.delete(noticia);
     }
-    @Override
+    
+    /*@Override
     public Noticia getNoticia(Noticia noticia) {
         throw new UnsupportedOperationException("Not supported yet."); // Generated from nbfs://nbhost/SystemFileSystem/Templates/Classes/Code/GeneratedMethodBody
-    }
+    }*/
     
     @Override
     public Noticia getNoticiaById(Long id) {

@@ -14,6 +14,7 @@ import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.multipart.MultipartFile;
 import org.springframework.web.servlet.mvc.support.RedirectAttributes; //Pruebas guardar
+
 @Controller
 @Slf4j
 @RequestMapping("/noticias")
@@ -50,7 +51,7 @@ public class NoticiasController {
         model.addAttribute("membresia", membresia);
         return "/membresia/modifica";
     }*/
-    
+    /*
     public String noticiaModificar(@RequestParam("idNoticia") Long idNoticia, Model model) {
         // Crear una instancia de Membresia y asignarle el ID
         Noticia noticia = new Noticia();
@@ -59,7 +60,7 @@ public class NoticiasController {
         noticia = noticiaService.getNoticia(noticia); 
         model.addAttribute("noticia", noticia);
         return "/noticia/modifica";
-    }
+    }*/
     
     /*@Autowired
     private FirebaseStorageServiceImp firebaseStorageService;*/
@@ -72,7 +73,7 @@ public class NoticiasController {
     @GetMapping("/eliminar/{idNoticia}")
     public String membresiaEliminar(Noticia noticia) {
         noticiaService.delete(noticia);
-        return "/noticias/listado";
+        return "redirect:/noticias/listado";
     }
     /*@GetMapping("/modificar/{idCategoria}")
     public String categoriaModificar(Categoria categoria, Model model) {
@@ -80,6 +81,13 @@ public class NoticiasController {
         model.addAttribute("categoria", categoria);
         return "/categoria/modifica";
     }*/
+    
+    @GetMapping("/modificar/{idNoticia}")
+    public String noticiaModificar(Noticia noticia, Model model) {
+        noticia = noticiaService.getNoticia(noticia);
+        model.addAttribute("noticias", noticia);
+        return "/noticias/modifica";
+    }
     
     @GetMapping("/{id}")
     @ResponseBody // Para devolver JSON

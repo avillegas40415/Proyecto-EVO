@@ -112,6 +112,7 @@
                 </div>
             </div>
         </section>
+        
         <!-- 4 Fragmento que se utiliza en la página modifca.html -->
         <section th:fragment="editarNoticia">
             <div class="row">
@@ -130,14 +131,26 @@
                                     <div class="col">
                                         <div class="card">
                                             <div class="card-header">
-                                                <h4>Actualizar</h4>
+                                                <h4>Actualizar noticia</h4>
                                             </div>
                                             <div class="card-body">
                                                 <div class="mb-3">
-                                                    <label for="descripcion">Descripcion</label>
+                                                    <label for="titulo">Titulo</label>
                                                     <input type="text" class="form-control" 
-                                                           name="descripcion" th:field="*{descripcion}"
+                                                           name="titulo" th:field="*{titulo}"
                                                            required="true">
+                                                </div>
+                                                <div class="mb-3">
+                                                    <label for="texto">Texto</label>
+                                                    <input type="text" class="form-control" 
+                                                           name="texto" th:field="*{texto}"
+                                                           required="true">
+                                                </div>
+                                                <div class="mb-3">
+                                                    <label for="posteo">Fecha posteo</label>
+                                                    <input type="date" class="form-control" 
+                                                           name="posteo" th:field="*{posteo}"
+                                                           required="true"/>
                                                 </div>
                                                 <div class="mb-3">
                                                     <label for="activo">Activo</label>
@@ -199,15 +212,6 @@
                                 <div class="post-img"></div>
                                 <span class="badge badge-danger">Nueva</span>
                                 <div class="post-title"><span th:text="${noticia.titulo}"></span></div>
-                                <!--<div class="post-link"><a href="#">Leer mas</a></div>
-                                <button 
-                                    type="button" 
-                                    class="btn btn-primary" 
-                                    data-bs-toggle="modal" 
-                                    data-bs-target="#leerNoticia">
-                                    <i class="fas fa-plus"></i> Leer mas
-                                </button>-->
-                                
                                 <button class="btn btn-primary leer-mas" data-bs-toggle="modal" data-bs-target="#leerNoticia" 
                     th:attr="data-id=${noticia.idNoticia}">Leer más</button>
                             </div>

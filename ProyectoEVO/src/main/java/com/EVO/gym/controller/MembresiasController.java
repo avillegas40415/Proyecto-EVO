@@ -31,7 +31,6 @@ public class MembresiasController {
         return "/membresias/listado";
     }*/
     
-    
     @GetMapping("/listado")
     public String inicio(Model model) {
         var membresias = membresiaService.getMembresias(false);
