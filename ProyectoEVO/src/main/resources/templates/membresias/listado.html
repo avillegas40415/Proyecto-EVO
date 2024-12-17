@@ -21,6 +21,23 @@
         <script src="/js/scriptsAdmin.js"></script>
         <script src="/js/datatables-simple-demo.js"></script>
         
+        <script>
+            function agregarBeneficio() {
+              const beneficiosContainer = document.getElementById('beneficios-container');
+              const nuevoBeneficio = document.createElement('div');
+              nuevoBeneficio.classList.add('mb-3');
+              nuevoBeneficio.innerHTML = `
+                <input type="text" class="form-control" name="beneficios[${beneficiosContainer.children.length}].descripcion" placeholder="Descripción del beneficio">
+                <button type="button" class="btn btn-danger btn-sm" onclick="eliminarBeneficio(this)">Eliminar</button>
+              `;
+              beneficiosContainer.appendChild(nuevoBeneficio);
+            }
+
+            function eliminarBeneficio(button) {
+              const beneficioDiv = button.parentNode;
+              beneficioDiv.remove();
+            }
+        </script>
 
     </body>
     

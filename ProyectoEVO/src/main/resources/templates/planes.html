@@ -22,7 +22,6 @@ Click nbfs://nbhost/SystemFileSystem/Templates/Other/html.html to edit this temp
                 </div>
             </div>
         </section>
-        
         <div id="generic_price_table">   
             <section>
                 <div class="container">
@@ -36,14 +35,10 @@ Click nbfs://nbhost/SystemFileSystem/Templates/Other/html.html to edit this temp
                         </div>
                     </div>
                 </div>
-                
                 <div class="container">
                     <!--BLOCK ROW START-->
                     <div class="row">
-                
-                
-                
-                                    <div class="col-md-4" th:each="membresia : ${membresias}">
+                        <div class="col-md-4" th:each="membresia : ${membresias}">
                             <!--PRICE CONTENT START-->
                             <!--<div class="generic_content clearfix">-->
                             <div th:class="${membresia.destacar ? 'generic_content clearfix active' : 'generic_content clearfix'}">

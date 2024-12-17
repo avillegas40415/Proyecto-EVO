@@ -37,4 +37,12 @@ public class Beneficio implements Serializable {
     public String getDescripcion() {
         return descripcion;
     }
+    
+    public void setDescripcion(String descripcion){
+        this.descripcion = descripcion;
+    }
+    
+    public void setMembresia(Membresia membresia) {
+        this.membresia = membresia;
+    }
 }

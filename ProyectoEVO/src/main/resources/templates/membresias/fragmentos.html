@@ -106,6 +106,15 @@
                                     <input class="form-check-input" type="checkbox" name="activo" id="activo"/>
                                 </div>
                             </div>
+                            
+                            <h5>Beneficios</h5>
+
+                            <div class="mb-3" id="beneficios-container">
+                            </div>
+
+                            <button type="button" class="btn btn-secondary" onclick="agregarBeneficio()">Agregar Beneficio</button>
+
+              
                             <div class="modal-footer">
                                 <button class="btn btn-primary" type="submit">Guardar</button>
                             </div>
@@ -170,6 +179,24 @@
                                                            id="activo"
                                                            th:field="*{activo}">
                                                 </div>
+                                                
+                                                
+                                                <h5>Beneficios</h5>
+
+                                        <div class="mb-3" id="beneficios-container">
+                                            <!--<div class="mb-3" th:each="beneficio, iterStat : ${membresias.beneficios}">
+                                                <input type="text" class="form-control" th:field="*{beneficios[__${iterStat.index}__].descripcion}" placeholder="Descripción del beneficio">
+                                                <button type="button" class="btn btn-danger btn-sm" onclick="eliminarBeneficio(this)">Eliminar</button>
+                                            </div>-->
+                                            <div class="mb-3" th:each="beneficio, iterStat : ${membresias.beneficios}" th:attr="data-index=${iterStat.index}">
+                                                <input type="text" class="form-control" th:field="*{beneficios[__${iterStat.index}__].descripcion}" placeholder="Descripción del beneficio">
+                                                <button type="button" class="btn btn-danger btn-sm" onclick="eliminarBeneficio(this)">Eliminar</button>
+                                            </div>
+                                        </div>
+
+                                        <button type="button" class="btn btn-secondary" onclick="agregarBeneficio()">Agregar Beneficio</button>
+
+                                        
                                             </div>
                                         </div>
                                     </div>

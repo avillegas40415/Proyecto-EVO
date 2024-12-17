@@ -2,6 +2,8 @@ package com.EVO.gym.domain;
 
 import jakarta.persistence.*;
 import java.io.Serializable;
+import java.util.ArrayList;
+import java.util.Collections;
 import java.util.List;
 import lombok.Data;
 
@@ -23,9 +25,12 @@ public class Membresia implements Serializable {
     private boolean activo;
     
     
-    @OneToMany(mappedBy = "membresia", fetch = FetchType.LAZY, cascade = CascadeType.ALL)
-    private List<Beneficio> beneficios;
+    //@OneToMany(mappedBy = "membresia", fetch = FetchType.LAZY, cascade = CascadeType.ALL)
+    //private List<Beneficio> beneficios;
 
+    @OneToMany(mappedBy = "membresia", cascade = CascadeType.ALL, orphanRemoval = true)
+    private List<Beneficio> beneficios = new ArrayList<>();
+    
     /*
     @OneToMany
     @JoinColumn(name="id_mem")
@@ -91,11 +96,23 @@ public class Membresia implements Serializable {
     
     
     public List<Beneficio> getBeneficios() {
-    return beneficios;
-}
+        return beneficios;
+    }
 
     public void setBeneficios(List<Beneficio> beneficios) {
         this.beneficios = beneficios;
+    }
+    
+    // Método para agregar un beneficio a la lista
+    public void agregarBeneficio(Beneficio beneficio) {
+        beneficios.add(beneficio);
+        beneficio.setMembresia(this);
+    }
+
+    // Método para eliminar un beneficio de la lista
+    public void eliminarBeneficio(Beneficio beneficio) {
+        beneficios.remove(beneficio);
+        beneficio.setMembresia(null);
     }
 }
     
