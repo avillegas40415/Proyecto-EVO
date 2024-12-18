@@ -4,7 +4,7 @@ import com.EVO.gym.domain.Categoria;
 import com.EVO.gym.service.CategoriaService;
 import com.EVO.gym.domain.Producto;
 import com.EVO.gym.service.ProductoService;
-import com.EVO.gym.service.impl.FirebaseStorageServiceImp;
+
 import java.io.IOException;
 import java.util.List;
 import lombok.extern.slf4j.Slf4j;
