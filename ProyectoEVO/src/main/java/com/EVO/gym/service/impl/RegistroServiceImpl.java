@@ -27,8 +27,7 @@ public class RegistroServiceImpl implements RegistroService {
     private UsuarioService usuarioService;
     @Autowired
     private MessageSource messageSource;  //creado en semana 4...
-    @Autowired
-    private FirebaseStorageServiceImpl firebaseStorageService;
+
 
     @Override
     public Model activar(Model model, String username, String clave) {
@@ -56,16 +55,6 @@ public class RegistroServiceImpl implements RegistroService {
     public void activar(Usuario usuario, MultipartFile imagenFile) {
         var codigo = new BCryptPasswordEncoder();
         usuario.setPassword(codigo.encode(usuario.getPassword()));
-
-        if (!imagenFile.isEmpty()) {
-            usuario.setActivo(true);
-            usuarioService.save(usuario, false);
-            usuario.setRutaImagen(
-                    firebaseStorageService.cargaImagen(
-                            imagenFile,
-                            "usuarios",
-                            usuario.getIdUsuario()));
-        }
         usuarioService.save(usuario, true);
     }
 

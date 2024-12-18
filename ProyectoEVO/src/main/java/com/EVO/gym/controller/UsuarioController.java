@@ -5,7 +5,6 @@
 package com.EVO.gym.controller;
 import com.EVO.gym.domain.Usuario;
 import com.EVO.gym.service.UsuarioService;
-import com.EVO.gym.service.FirebaseStorageService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
@@ -35,21 +34,9 @@ public class UsuarioController {
         return "/usuario/modifica";
     }
 
-    @Autowired
-    private FirebaseStorageService firebaseStorageService;
-
     @PostMapping("/guardar")
-    public String usuarioGuardar(Usuario usuario,
-            @RequestParam("imagenFile") MultipartFile imagenFile) {
-        if (!imagenFile.isEmpty()) {
-            usuarioService.save(usuario,false);
-            usuario.setRutaImagen(
-                    firebaseStorageService.cargaImagen(
-                            imagenFile,
-                            "usuario",
-                            usuario.getIdUsuario()));
-        }
-        usuarioService.save(usuario,true);
+    public String usuarioGuardar(Usuario usuario){
+        usuarioService.save(usuario);
         return "redirect:/usuario/listado";
     }
 
