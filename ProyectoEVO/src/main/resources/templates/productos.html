@@ -19,18 +19,23 @@ Click nbfs://nbhost/SystemFileSystem/Templates/Other/html.html to edit this temp
                 <div class="col-12">
                 </div>
               </div>
-              <div class="row">
-                <!--ADD CLASSES HERE d-flex align-items-stretch-->
-                <div class="col-lg-4 mb-3 d-flex align-items-stretch" th:each="productos : ${productos}">
-                  <div class="card">
-                    <img src="#" class="card-img-top" alt="Card Image">
-                    <div class="card-body d-flex flex-column">
-                      <h5 class="card-title"><span th:text="${productos.descripcion}"></span></h5>
-                      <p class="card-text mb-4"><span th:text="${productos.detalle}"></span></p>
+                
+                <div class="card" style="width: 18rem;" th:each="productos : ${productos}">
+                    <img src="https://static.nike.com/a/images/c_limit,w_592,f_auto/t_product_v1/ac3fad90-b00d-4a19-a1d5-54f4d00cc8b4/M+NP+DF+SLIM+TOP+SL.png" class="card-img-top" alt="...">
+                    <div class="card-body">
+                        <h5 class="card-title"><span th:text="${productos.descripcion}"></span></h5>
+                        <p class="card-text"><span th:text="${productos.detalle}"></span></p>
                     </div>
-                  </div>
+                    <ul class="list-group list-group-flush">
+                        <li class="list-group-item">Categoria: <span th:text="${productos.categoria.descripcion}"/></li>
+                        <li class="list-group-item">Precio: <span th:text="${productos.precio}"/></li>
+                        <li class="list-group-item">Stock: <span th:text="${productos.existencias}"/></li>
+                    </ul>
+                    <div class="card-body">
+                        <a href="#" class="btn btn-primary">Agregar al carrito</a>
+                    </div>
                 </div>
-              </div>  
+                  
             </div>
         </section>
 
