@@ -19,9 +19,9 @@ Click nbfs://nbhost/SystemFileSystem/Templates/Other/html.html to edit this temp
                 <div class="col-12">
                 </div>
               </div>
-                
-                <div class="card" style="width: 18rem;" th:each="productos : ${productos}">
-                    <img src="https://static.nike.com/a/images/c_limit,w_592,f_auto/t_product_v1/ac3fad90-b00d-4a19-a1d5-54f4d00cc8b4/M+NP+DF+SLIM+TOP+SL.png" class="card-img-top" alt="...">
+                <div class="row">
+                <div class="card col-sm-6 col-md-4" style="width: 18rem;" th:each="productos : ${productos}">
+                    <img th:src="@{${productos.rutaImagen}}" alt="Imagen del producto" class="card-img-top">
                     <div class="card-body">
                         <h5 class="card-title"><span th:text="${productos.descripcion}"></span></h5>
                         <p class="card-text"><span th:text="${productos.detalle}"></span></p>
@@ -35,10 +35,13 @@ Click nbfs://nbhost/SystemFileSystem/Templates/Other/html.html to edit this temp
                         <a href="#" class="btn btn-primary">Agregar al carrito</a>
                     </div>
                 </div>
-                  
+                  </div>
             </div>
         </section>
 
+        
+        
+        
         <footer th:replace="~{layout/plantilla :: footer}"/> 
         
         <script src="js/scripts.js"></script>

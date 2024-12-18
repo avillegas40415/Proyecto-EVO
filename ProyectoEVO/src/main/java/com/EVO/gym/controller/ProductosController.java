@@ -4,12 +4,16 @@ import com.EVO.gym.domain.Categoria;
 import com.EVO.gym.service.CategoriaService;
 import com.EVO.gym.domain.Producto;
 import com.EVO.gym.service.ProductoService;
+import com.EVO.gym.service.impl.FirebaseStorageServiceImp;
+import java.io.IOException;
 import java.util.List;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
+import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
@@ -37,8 +41,12 @@ public class ProductosController {
         return "/productos/listado";
     }
     
+    @Autowired
+    private FirebaseStorageServiceImp firebaseStorageService;
+    
     @PostMapping("/guardar")
     public String productoGuardar(Producto producto){
+
         productoService.save(producto);
         return "redirect:/productos/listado";
     }
