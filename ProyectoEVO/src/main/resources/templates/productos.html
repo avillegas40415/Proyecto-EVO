@@ -11,16 +11,30 @@ Click nbfs://nbhost/SystemFileSystem/Templates/Other/html.html to edit this temp
         
     <body id="page-top">
         <header th:replace="~{layout/plantilla :: nav-pruebas}"/> 
-        
+        <section class="container mt-5">
+            <div class="row">
+                <div class="col-12 text-center">
+                    <div class="subtitulo-seccion">Nuestros</div>
+                    <div class="titulo-seccion">Productos</div>
+                    </div>
+            </div>
+        </section>
         
         <section class="pt-5 pb-5 shadow-sm">
             <div class="container">
+                <select id="filtro-categoria">
+                    <option value="">Todas las categorías</option>
+                    <option th:each="categoria : ${categorias}" 
+                            th:value="${categoria.idCategoria}" 
+                            th:text="${categoria.descripcion}">
+                    </option>
+                </select>
               <div class="row pt-5">
                 <div class="col-12">
                 </div>
               </div>
                 <div class="row">
-                <div class="card col-sm-6 col-md-4" style="width: 18rem;" th:each="productos : ${productos}">
+                <div class="card col-sm-6 col-md-4" style="width: 18rem;" th:each="productos : ${productos}" th:attr="data-categoria=${productos.categoria.idCategoria}">
                     <img th:src="@{${productos.rutaImagen}}" alt="Imagen del producto" class="card-img-top">
                     <div class="card-body">
                         <h5 class="card-title"><span th:text="${productos.descripcion}"></span></h5>
@@ -73,6 +87,22 @@ Click nbfs://nbhost/SystemFileSystem/Templates/Other/html.html to edit this temp
                     });
                 });
             });
+        </script>
+        <script>
+            const filtroCategoria = document.getElementById('filtro-categoria');
+filtroCategoria.addEventListener('change', () => {
+    const categoriaId = filtroCategoria.value;
+    const productos = document.querySelectorAll('.card[data-categoria]');
+
+    productos.forEach(producto => {
+        const productoCategoriaId = producto.getAttribute('data-categoria');
+        if (categoriaId === '' || productoCategoriaId === categoriaId) {
+            producto.style.display = 'block';
+        } else {
+            producto.style.display = 'none';
+        }
+    });
+});
         </script>
     </body>
 </html>

@@ -1,8 +1,10 @@
 package com.EVO.gym.controller;
 
+import com.EVO.gym.domain.Categoria;
 import com.EVO.gym.domain.Membresia;
 import com.EVO.gym.domain.Noticia;
 import com.EVO.gym.domain.Producto;
+import com.EVO.gym.service.CategoriaService;
 import com.EVO.gym.service.MembresiaService;
 import com.EVO.gym.service.NoticiaService;
 import com.EVO.gym.service.ProductoService;
@@ -12,6 +14,7 @@ import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.ui.Model;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.web.bind.annotation.PostMapping;
 
 @Controller
 public class SubpaginasController {
@@ -22,6 +25,9 @@ public class SubpaginasController {
     private NoticiaService noticiaService;
     @Autowired
     private ProductoService productoService;
+    @Autowired
+    private CategoriaService categoriaService; // Inyecta el servicio de categorías
+
     
     @GetMapping("/index")
     public String index(Model model) {
@@ -57,8 +63,14 @@ public class SubpaginasController {
     public String productos(Model model) {
         List<Producto> productos = productoService.getProductos(true); // Obtener las membresías
         model.addAttribute("productos", productos); // Agregarlas al modelo
+        
+        // Obtener la lista de categorías y agregarla al modelo
+        List<Categoria> categorias = categoriaService.getCategorias(true); 
+        model.addAttribute("categorias", categorias);
+        
         return "productos"; // Retorna el nombre de la vista (nosotros.html)
     }
+
     
     @GetMapping("/contacto")
     public String contacto() {

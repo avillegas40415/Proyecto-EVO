@@ -41,8 +41,6 @@ public class ProductosController {
         return "/productos/listado";
     }
     
-    @Autowired
-    private FirebaseStorageServiceImp firebaseStorageService;
     
     @PostMapping("/guardar")
     public String productoGuardar(Producto producto){
