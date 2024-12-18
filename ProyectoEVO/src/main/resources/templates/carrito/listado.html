@@ -1,0 +1,22 @@
+<!DOCTYPE html>
+<!--
+Click nbfs://nbhost/SystemFileSystem/Templates/Licenses/license-default.txt to change this license
+Click nbfs://nbhost/SystemFileSystem/Templates/Other/html.html to edit this template
+-->
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:th="http://www.thymeleaf.org">
+    <head th:replace="~{layout/plantilla :: head}">
+        <title>EVO GYM</title>        
+    </head>
+    <body>
+        <header th:replace="~{layout/plantilla :: nav-pruebas}"/> 
+
+        <section th:replace="~{carrito/fragmentos :: listadoCarrito}"/>
+
+        <footer th:replace="~{layout/plantilla :: footer}"/> 
+        
+        <script src="js/scripts.js"></script>
+
+    </body>
+</html>
+
