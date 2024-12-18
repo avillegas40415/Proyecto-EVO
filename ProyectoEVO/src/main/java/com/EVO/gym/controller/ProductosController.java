@@ -30,7 +30,7 @@ public class ProductosController {
         var productos = productoService.getProductos(false);
         model.addAttribute("productos", productos);
         
-        var categorias = categoriaService.getCategorias(false);
+        var categorias = categoriaService.getCategorias(true);
         model.addAttribute("categorias", categorias);
         
         model.addAttribute("totalProductos",productos.size());
@@ -41,6 +41,21 @@ public class ProductosController {
     public String productoGuardar(Producto producto){
         productoService.save(producto);
         return "redirect:/productos/listado";
+    }
+    
+    @GetMapping("/eliminar/{idProducto}")
+    public String productoEliminar(Producto producto) {
+        productoService.delete(producto);
+        return "redirect:/productos/listado";
+    }
+    
+    @GetMapping("/modificar/{idProducto}")
+    public String noticiaModificar(Producto producto, Model model) {
+        producto = productoService.getProducto(producto);
+        List<Categoria> categorias = categoriaService.getCategorias(true); // Obtener todas las categorías activas
+        model.addAttribute("productos", producto); // Agregar el producto al modelo
+        model.addAttribute("categorias", categorias); // Agregar la lista de categorías al modelo
+        return "/productos/modifica";
     }
     
 }

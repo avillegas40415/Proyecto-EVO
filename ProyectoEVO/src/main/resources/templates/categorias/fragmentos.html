@@ -101,17 +101,17 @@
         
        
         <!-- 4 Fragmento que se utiliza en la página modifca.html -->
-        <section th:fragment="editarNoticia">
+        <section th:fragment="editarCategorias">
             <div class="row">
                 <div class="col-md-2"></div>
                 <div class="col-md-8">
                     <form method="POST"
-                          th:action="@{/noticias/guardar}" 
-                          th:object="${noticias}"
+                          th:action="@{/categorias/guardar}" 
+                          th:object="${categorias}"
                           class="was-validated"                          
                           enctype="multipart/form-data">
-                        <input type="hidden" name="idNoticia" th:field="*{idNoticia}"/>
-                        <section th:replace="~{noticias/fragmentos :: botonesEditar}"/>
+                        <input type="hidden" name="idCategoria" th:field="*{idCategoria}"/>
+                        <section th:replace="~{categorias/fragmentos :: botonesEditar}"/>
                         <div id=details>
                             <div class="container">
                                 <div class="row">
@@ -122,7 +122,7 @@
                                             </div>
                                             <div class="card-body">
                                                 <div class="mb-3">
-                                                    <label for="descripcion">Descripcion</label>
+                                                    <label for="descripcion">Categoria</label>
                                                     <input type="text" class="form-control" 
                                                            name="descripcion" th:field="*{descripcion}"
                                                            required="true">
@@ -149,12 +149,12 @@
             <div class="container py-4 mb-4 bg-light">
                 <div class="row">
                     <div class="col-md-4 d-grid">
-                        <a th:href="@{/noticias/listado}" class="btn btn-primary">
+                        <a th:href="@{/categorias/listado}" class="btn btn-primary">
                             <i class="fas fa-arrow-left"></i> Regresar
                         </a>
                     </div>
                     <div class="col-md-4 d-grid">                                
-                        <a th:href="@{/noticias/eliminar/}+${noticia.idNoticia}"
+                        <a th:href="@{/categorias/eliminar/}+${categoria.idCategoria}"
                            class="btn btn-danger">
                             <i class="fas fa-trash"></i> Eliminar
                         </a>

@@ -2,6 +2,7 @@ package com.EVO.gym.domain;
 
 import jakarta.persistence.*;
 import java.io.Serializable;
+import java.util.ArrayList;
 import java.util.List;
 import lombok.Data;
 
@@ -20,9 +21,11 @@ public class Categoria implements Serializable {
     private String rutaImagen;
     private boolean activo;
 
-    @OneToMany
+    /*@OneToMany
     @JoinColumn(name="id_categoria")
-    List<Producto> productos;
+    List<Producto> productos;*/
+    @OneToMany(mappedBy = "categoria", cascade = {CascadeType.PERSIST, CascadeType.MERGE}, orphanRemoval = true)
+    List<Producto> productos = new ArrayList<>();
     
     public Categoria() {
     }
@@ -62,6 +65,23 @@ public class Categoria implements Serializable {
 
     public List<Producto> getProductos() {
         return productos;
+    }
+    
+    public void setProductos(List<Producto> productos) {
+        this.productos = productos;
+    }
+    
+    public void agregarProducto(Producto producto) {
+        if (!productos.contains(producto)) {
+            productos.add(producto);
+            producto.setCategoria(this); // Establece la categoría en el producto
+        }
+    }
+
+    public void eliminarProducto(Producto producto) {
+        if (productos.remove(producto)) {
+            producto.setCategoria(null);  // Desasocia el producto de la categoría
+        }
     }
 
     public boolean isActivo() {

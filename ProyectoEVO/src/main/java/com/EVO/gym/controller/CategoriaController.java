@@ -7,10 +7,12 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.multipart.MultipartFile;
+import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
 @Controller
 @Slf4j
@@ -41,16 +43,30 @@ public class CategoriaController {
         return "redirect:/categorias/listado";
     }
 
+    /*
     @GetMapping("/eliminar/{idCategoria}")
     public String categoriaEliminar(Categoria categoria) {
         categoriaService.delete(categoria);
-        return "redirect:/categoria/listado";
+        return "redirect:/categorias/listado";
+    }*/
+    
+     @GetMapping("/eliminar/{idCategoria}")
+    public String categoriaEliminar(@PathVariable Long idCategoria, RedirectAttributes attributes) {
+        Categoria categoria = categoriaService.getCategoria(idCategoria);
+        if (categoriaService.tieneProductosAsociados(categoria)) { // Verificar si hay productos asociados
+            attributes.addFlashAttribute("error", "No se puede eliminar la categoría porque tiene productos asociados.");
+            
+        } else {
+            categoriaService.delete(categoria);
+            attributes.addFlashAttribute("success", "Categoría eliminada correctamente.");
+        }
+        return "redirect:/categorias/listado";
     }
 
     @GetMapping("/modificar/{idCategoria}")
-    public String categoriaModificar(Categoria categoria, Model model) {
-        categoria = categoriaService.getCategoria(categoria);
-        model.addAttribute("categoria", categoria);
-        return "/categoria/modifica";
+    public String categoriaModificar(Categoria categorias, Model model) {
+        categorias = categoriaService.getCategoria(categorias);
+        model.addAttribute("categorias", categorias);
+        return "/categorias/modifica";
     }
 }

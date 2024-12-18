@@ -70,6 +70,7 @@ public class NoticiasController {
         noticiaService.save(noticia);
         return "redirect:/noticias/listado";
     }
+    
     @GetMapping("/eliminar/{idNoticia}")
     public String membresiaEliminar(Noticia noticia) {
         noticiaService.delete(noticia);

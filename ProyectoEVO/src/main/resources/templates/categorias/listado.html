@@ -7,20 +7,58 @@
     <body>
         <nav th:replace="~{layout/plantillaDashboard :: nav-dash}"/>
         
+        
+        
         <div id="layoutSidenav">
             <div th:replace="~{layout/plantillaDashboard :: sidenav-dash}"/>
             <div id="layoutSidenav_content">
+                <!-- Alerta de Error -->
+                <div th:if="${error != null}" class="alert alert-danger alert-dismissible fade show" role="alert" id="alerta-error">
+                  <span th:text="${error}"></span>
+                  <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
+                </div>
+
+                <!-- Alerta de Éxito -->
+                <div th:if="${success != null}" class="alert alert-success alert-dismissible fade show" role="alert" id="alerta-success">
+                  <span th:text="${success}"></span>
+                  <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
+                </div>
+                
+                
                 <section th:replace="~{categorias/fragmentos :: agregarCategoria}"/> 
                 <main th:replace="~{categorias/fragmentos :: listadoCategorias}"></main>
                 <footer th:replace="~{layout/plantillaDashboard :: footer-dash}"></footer>
             </div>
+            
+            
+            
+            
         </div>
         
+        
         <script src="https://cdn.jsdelivr.net/npm/simple-datatables@7.1.2/dist/umd/simple-datatables.min.js" crossorigin="anonymous"></script>
-        <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.3/dist/js/bootstrap.bundle.min.js" crossorigin="anonymous"></script>
+        <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.3/dist/js/bootstrap.bundle.min.js"></script>
         <script src="/js/scriptsAdmin.js"></script>
         <script src="/js/datatables-simple-demo.js"></script>
-        
+        <script>
+            // Cerrar alerta de error después de 5 segundos si existe
+            if (document.getElementById('alerta-error')) {
+              setTimeout(function() {
+                var alertaError = new bootstrap.Alert(document.getElementById('alerta-error'));
+                alertaError.close();
+              }, 5000);
+            }
+
+            // Cerrar alerta de éxito después de 5 segundos si existe
+            if (document.getElementById('alerta-success')) {
+              setTimeout(function() {
+                var alertaSuccess = new bootstrap.Alert(document.getElementById('alerta-success'));
+                alertaSuccess.close();
+              }, 5000);
+            }
+        </script>
     </body>
     
+    
+
 </html>

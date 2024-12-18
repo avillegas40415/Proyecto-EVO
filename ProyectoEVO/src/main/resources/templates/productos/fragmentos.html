@@ -7,6 +7,7 @@
     </head>
     <body>
         
+        
         <main th:fragment="listadoProductos" id="productos">
                     <div class="d-flex align-items-center justify-content-between mt-4 mb-0">
                        <!--<a class="btn btn-primary" href="login.html">Agregar Noticia</a>-->
@@ -19,7 +20,7 @@
                         </button>
                     </div>
                     <div class="container-fluid px-4">
-                        <h1 class="mt-4">Productos</h1>
+                        <h1 class="mt-4">Productos EVO</h1>
                         <div class="card mb-4">
                             <div class="card-body" th:if="${productos != null and !productos.empty}"> <!-- Empiezan pruebas de listar membresias-->
                                 <table id="datatablesSimple">
@@ -54,6 +55,7 @@
                                             <td>[[${productos.categoria.descripcion}]]</td>
                                             <td>[[${productos.detalle}]]</td>
                                             <td>[[${productos.precio}]]</td>
+                                            <td>[[${productos.existencias}]]</td>
                                             <td th:text="${productos.activo} ? 'Activa' : 'Inactiva'"/>
                                             <td><a th:href="@{/productos/eliminar/}+${productos.idProducto}"
                                                    class="btn btn-danger">
@@ -133,30 +135,58 @@
         
        
         <!-- 4 Fragmento que se utiliza en la página modifca.html -->
-        <section th:fragment="editarNoticia">
+        <section th:fragment="editarProducto">
             <div class="row">
                 <div class="col-md-2"></div>
                 <div class="col-md-8">
                     <form method="POST"
-                          th:action="@{/noticias/guardar}" 
-                          th:object="${noticias}"
+                          th:action="@{/productos/guardar}" 
+                          th:object="${productos}"
                           class="was-validated"                          
                           enctype="multipart/form-data">
-                        <input type="hidden" name="idNoticia" th:field="*{idNoticia}"/>
-                        <section th:replace="~{noticias/fragmentos :: botonesEditar}"/>
+                        <input type="hidden" name="idProducto" th:field="*{idProducto}"/>
+                        <section th:replace="~{productos/fragmentos :: botonesEditar}"/>
                         <div id=details>
                             <div class="container">
                                 <div class="row">
                                     <div class="col">
                                         <div class="card">
                                             <div class="card-header">
-                                                <h4>Actualizar</h4>
+                                                <h4>Actualizar Producto</h4>
                                             </div>
                                             <div class="card-body">
                                                 <div class="mb-3">
                                                     <label for="descripcion">Descripcion</label>
                                                     <input type="text" class="form-control" 
                                                            name="descripcion" th:field="*{descripcion}"
+                                                           required="true">
+                                                </div>
+                                                <div class="mb-3"> 
+                                                    <label for="descripcion">Categoria</label>
+                                                    <select class="form-select" aria-label="Default select example" name="categoria"> 
+                                                        <option th:each="categoria : ${categorias}"
+                                                                th:value="${categoria.idCategoria}"
+                                                                th:text="${categoria.descripcion}"
+                                                                th:selected="${categoria == productos.categoria}"> 
+                                                        </option>   
+                                                    </select>                             
+                                                </div>
+                                                <div class="mb-3">
+                                                    <label for="detalle">Detalle</label>
+                                                    <input type="text" class="form-control" 
+                                                           name="detalle" th:field="*{detalle}"
+                                                           required="true">
+                                                </div>
+                                                <div class="mb-3">
+                                                    <label for="precio">Precio</label>
+                                                    <input type="text" class="form-control" 
+                                                           name="precio" th:field="*{precio}"
+                                                           required="true">
+                                                </div>
+                                                <div class="mb-3">
+                                                    <label for="existencias">Existencias</label>
+                                                    <input type="text" class="form-control" 
+                                                           name="existencias" th:field="*{existencias}"
                                                            required="true">
                                                 </div>
                                                 <div class="mb-3">
@@ -181,12 +211,12 @@
             <div class="container py-4 mb-4 bg-light">
                 <div class="row">
                     <div class="col-md-4 d-grid">
-                        <a th:href="@{/noticias/listado}" class="btn btn-primary">
+                        <a th:href="@{/productos/listado}" class="btn btn-primary">
                             <i class="fas fa-arrow-left"></i> Regresar
                         </a>
                     </div>
                     <div class="col-md-4 d-grid">                                
-                        <a th:href="@{/noticias/eliminar/}+${noticia.idNoticia}"
+                        <a th:href="@{/productos/eliminar/}+${producto.idProducto}"
                            class="btn btn-danger">
                             <i class="fas fa-trash"></i> Eliminar
                         </a>
