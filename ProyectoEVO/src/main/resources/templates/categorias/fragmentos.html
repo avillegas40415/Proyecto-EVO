@@ -8,7 +8,7 @@
     <body>
         
         <main th:fragment="listadoCategorias" id="categorias">
-                    <div class="d-flex align-items-center justify-content-between mt-4 mb-0">
+                    <div class="d-flex align-items-center justify-content-between mt-4 mb-0" sec:authorize="hasRole('ROLE_ADMIN')">
                        <!--<a class="btn btn-primary" href="login.html">Agregar Noticia</a>-->
                        <button 
                             type="button" 
@@ -44,7 +44,7 @@
                                             <td>[[${contador.count}]]</td> <!-- Pruebas-->
                                             <td>[[${categorias.descripcion}]]</td>
                                             <td th:text="${categorias.activo} ? 'Activa' : 'Inactiva'"/>
-                                            <td><a th:href="@{/categorias/eliminar/}+${categorias.idCategoria}"
+                                            <td sec:authorize="hasRole('ROLE_ADMIN')"><a th:href="@{/categorias/eliminar/}+${categorias.idCategoria}"
                                                    class="btn btn-danger">
                                                     <i class="fas fa-trash"></i> Eliminar</a>
                                                 <!--th:href="@{/membresias/modificar/}+${membresias.idMembresia}"-->

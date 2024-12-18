@@ -1,5 +1,6 @@
 <html xmlns="http://www.w3.org/1999/xhtml"
-      xmlns:th="http://www.thymeleaf.org">
+      xmlns:th="http://www.thymeleaf.org"
+      xmlns:sec="http://www.thymeleaf.org/thymeleaf-extras-springsecurity6">
     <head th:replace="~{layout/plantilla :: head}">
         <title>EVO GYM</title>        
     </head>
@@ -12,7 +13,7 @@
                 <div class="row justify-content-center">
                     <div class="col-md-8">
                         <img src="/assets/img/team/1.jpg" alt="Imagen de perfil" class="profile-image">
-                        <div class="profile-name">Anthony Villegas</div>
+                            <div class="profile-name"><span sec:authentication="name"></span></div>
                         <div class="profile-role">Entrenador personal</div>
                         <div class="profile-description">
                             Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore   
@@ -26,9 +27,12 @@
                         </div>
                         <div class="d-flex flex-column text-center mt-4">
                             <button type="button" class="btn btn-primary">Editar perfil</button>
-                            <button type="button" class="btn btn-primary mt-2">Cerrar sesión</button>
+                            <form method="post" th:action="@{/logout}">
+                                <button type="submit" class="btn btn-primary mt-2">Cerrar sesión</button>
+                            </form>
+                            
                          </div>
-                        <div class="d-flex flex-column text-center mt-4">
+                        <div class="d-flex flex-column text-center mt-4" sec:authorize="hasRole('ROLE_ADMIN')">
                             <!-- <button type="button" class="btn btn-primary" th:formaction="@{/dashboard}">Panel Administrativo</button>comment --> 
                             <a class="btn btn-primary" th:href="@{/dashboard}" role="button">Panel Administrativo</a>
                          </div>

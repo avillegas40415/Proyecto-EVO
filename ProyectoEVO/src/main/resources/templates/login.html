@@ -1,3 +1,4 @@
+<!DOCTYPE html>
 <html xmlns="http://www.w3.org/1999/xhtml"
       xmlns:th="http://www.thymeleaf.org">
     <head th:replace="~{layout/plantilla :: head}">
@@ -12,25 +13,41 @@
                     <div class="col-md-6">
                         <h2 class="text-center mb-4 titulo-seccion">Inicia sesión en tu cuenta</h2>
                         <p class="descripcion-login">¿Deseas dar tu primer paso? <a href="#">Regístrate</a></p>
-                        <form>
+                        <form method="POST" th:action="@{/login}">
                             <div class="mb-3">
-                                <label for="email" class="form-label">Correo electrónico</label>
-                                <input type="email" class="form-control" id="email" placeholder="Ingresa tu correo electrónico">
+                                <label for="username" class="form-label">Usuario</label>
+                                <div class="input-group">
+                                    <input type="text" class="form-control" name="username" id="username" placeholder="Ingresa tu usuario">
+                                </div>
                             </div>
-                        <div class="mb-3">
-                            <label for="password" class="form-label">Contraseña</label>
-                            <div class="input-group">
-                                <input type="password" class="form-control" id="password" placeholder="Ingresa tu contraseña">
-                                <span class="input-group-text">   
-                                    <i class="far fa-eye"></i> </span>
-                            </div>
-                        </div>                     
-                            
-                        <button type="submit" class="btn btn-primary w-100" th:formaction="@{/perfil}">Iniciar sesión</button>
+                            <div class="mb-3">
+                                <label for="password" class="form-label">Contraseña</label>
+                                <div class="input-group">
+                                    <input type="password" class="form-control" name="password" id="password" placeholder="Ingresa tu contraseña">
+                                    <span class="input-group-text">   
+                                        <i class="far fa-eye"></i> </span>
+                                </div>
+                            </div>     
+
+                        
+                        
+                        <button class="btn btn-primary w-100" type="submit">
+                            <span class="btn">
+                                <i class="fas fa-sign-in-alt">
+                                    
+                                </i>
+                                            Iniciar sesión
+                            </span>
+                        </button>
+
                         <div class="text-center mt-3">
                             <a href="#" class="link-danger">¿Olvidó su contraseña?</a>
                         </div>
                     </form>
+                        
+                        <div th:if="${param.error != null}">
+                        <h3>Error al iniciar sesion. Valide</h3>
+                    </div>
                 </div>
             </div>
         </section>
