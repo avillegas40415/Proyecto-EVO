@@ -12,7 +12,7 @@
                 <div class="row justify-content-center">
                     <div class="col-md-6">
                         <h2 class="text-center mb-4 titulo-seccion">Inicia sesión en tu cuenta</h2>
-                        <p class="descripcion-login">¿Deseas dar tu primer paso? <a href="#">Regístrate</a></p>
+                        <p class="descripcion-login">¿Deseas dar tu primer paso? <a th:href="@{/registro/nuevo}">Regístrate</a></p>
                         <form method="POST" th:action="@{/login}">
                             <div class="mb-3">
                                 <label for="username" class="form-label">Usuario</label>
@@ -41,12 +41,13 @@
                         </button>
 
                         <div class="text-center mt-3">
-                            <a href="#" class="link-danger">¿Olvidó su contraseña?</a>
+                            <a th:href="@{/registro/recordar}" class="link-danger">¿Olvidó su contraseña?</a>
                         </div>
                     </form>
                         
-                        <div th:if="${param.error != null}">
-                        <h3>Error al iniciar sesion. Valide</h3>
+                    <div th:if="${param.error != null}">
+                        <!--<h3>Error al iniciar sesion. Valide</h3>-->
+                        <p class="descripcion-login">Error al iniciar sesion. Valide</p>
                     </div>
                 </div>
             </div>

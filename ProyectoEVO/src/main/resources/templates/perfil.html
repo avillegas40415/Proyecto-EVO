@@ -32,7 +32,7 @@
                             </form>
                             
                          </div>
-                        <div class="d-flex flex-column text-center mt-4" sec:authorize="hasRole('ROLE_ADMIN')">
+                        <div class="d-flex flex-column text-center mt-4" sec:authorize="hasRole('ROLE_ADMIN') or hasRole('ROLE_VENDEDOR')">
                             <!-- <button type="button" class="btn btn-primary" th:formaction="@{/dashboard}">Panel Administrativo</button>comment --> 
                             <a class="btn btn-primary" th:href="@{/dashboard}" role="button">Panel Administrativo</a>
                          </div>

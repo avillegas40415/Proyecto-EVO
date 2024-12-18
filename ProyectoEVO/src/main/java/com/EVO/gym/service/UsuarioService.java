@@ -6,7 +6,7 @@ import java.util.List;
 public interface UsuarioService {
     
     // Se obtiene un listado de usuarios en un List
-    public List<Usuario> getUsuarios();
+    public List<Usuario> getUsuarios(boolean activos);
     
     // Se obtiene un Usuario, a partir del id de un usuario
     public Usuario getUsuario(Usuario usuario);

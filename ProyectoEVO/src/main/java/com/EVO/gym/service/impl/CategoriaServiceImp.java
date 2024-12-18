@@ -40,7 +40,7 @@ public class CategoriaServiceImp implements CategoriaService {
         categoriaDao.save(categoria);
     }*/
     
-    @Override
+    /*@Override
     @Transactional
     public void save(Categoria categoria) {
         // Obtener la categoría existente de la base de datos
@@ -53,6 +53,27 @@ public class CategoriaServiceImp implements CategoriaService {
 
             // Guardar la categoría actualizada
             categoriaDao.save(categoriaExistente);
+        } else {
+            // Si la categoría no existe, guardar una nueva
+            categoriaDao.save(categoria);
+        }
+    }*/
+    
+    @Override
+    @Transactional
+    public void save(Categoria categoria) {
+        if (categoria.getIdCategoria() != null) { // Verificar si la categoría ya tiene un ID
+            // Obtener la categoría existente de la base de datos
+            Categoria categoriaExistente = categoriaDao.findById(categoria.getIdCategoria()).orElse(null);
+
+            if (categoriaExistente != null) {
+                // Actualizar el nombre de la categoría existente
+                categoriaExistente.setDescripcion(categoria.getDescripcion());
+                // ... actualizar otras propiedades si es necesario ...
+
+                // Guardar la categoría actualizada
+                categoriaDao.save(categoriaExistente);
+            } 
         } else {
             // Si la categoría no existe, guardar una nueva
             categoriaDao.save(categoria);

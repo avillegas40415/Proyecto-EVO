@@ -96,6 +96,11 @@
                     <artifactId>spring-boot-starter-data-jpa</artifactId>            
                 </dependency>
                 <dependency>
+                    <groupId>com.google.firebase</groupId>
+                    <artifactId>firebase-admin</artifactId>
+                    <version>9.1.1</version>
+                </dependency>
+                <dependency>
                     <groupId>org.springframework.boot</groupId>
                     <artifactId>spring-boot-starter-security</artifactId>
                 </dependency>
@@ -108,7 +113,10 @@
                     <artifactId>validation-api</artifactId>
                     <version>2.0.1.Final</version>
                 </dependency>
-
+                <dependency>
+                    <groupId>org.springframework.boot</groupId>
+                    <artifactId>spring-boot-starter-mail</artifactId>
+                </dependency>
 	</dependencies>
         
         

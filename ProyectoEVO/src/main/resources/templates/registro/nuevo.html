@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:th="http://www.thymeleaf.org">
+    <head th:replace="~{layout/plantilla :: head}">
+        <title>EVO GYM</title>        
+    </head>
+    <body id="page-top">
+        <header th:replace="~{layout/plantilla :: nav-pruebas}"/> 
+
+        <section th:replace="~{registro/fragmentos :: nuevoUsuario}"/>
+        
+        <footer th:replace="~{layout/plantilla :: footer}"/> 
+        
+        <script src="js/scripts.js"></script>
+        <script>
+            
+            document.addEventListener('DOMContentLoaded', (event) => {
+                // Función para obtener el idioma de la URL
+                function getLanguageFromURL() {
+                    const urlParams = new URLSearchParams(window.location.search);
+                    return urlParams.get('lang');
+                }
+
+                // Obtener el idioma actual de la URL o usar 'ES' como valor por defecto
+                const currentLanguage = getLanguageFromURL().toUpperCase() || 'ES'; 
+
+                // Obtener el botón del dropdown
+                const dropdownButton = document.getElementById('languageDropdown');
+
+                // Actualizar el texto del botón con el idioma actual
+                dropdownButton.textContent = currentLanguage;
+
+                // Agregar event listeners a las opciones del dropdown
+                const dropdownItems = document.querySelectorAll('.dropdown-item');
+
+                dropdownItems.forEach(item => {
+                    item.addEventListener('click', () => {
+                        const selectedLanguage = item.textContent.substring(0, 2).toUpperCase();
+                        dropdownButton.textContent = selectedLanguage;
+                    });
+                });
+            });
+        </script>
+    </body>
+</html>

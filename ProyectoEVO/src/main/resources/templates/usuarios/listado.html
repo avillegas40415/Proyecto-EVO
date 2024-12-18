@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:th="http://www.thymeleaf.org">
+    <head th:replace="~{layout/plantillaDashboard :: head-dash}">
+        <title>Administrador Evo - Usuarios</title>
+    </head>
+    <body>
+        <nav th:replace="~{layout/plantillaDashboard :: nav-dash}"/>
+        
+        <div id="layoutSidenav">
+            <div th:replace="~{layout/plantillaDashboard :: sidenav-dash}"/>
+            <div id="layoutSidenav_content">
+                <!--<section th:replace="~{usuarios/fragmentos :: agregarMembresia}"/> -->
+                <main th:replace="~{usuarios/fragmentos :: listadoUsuarios}"></main>
+                <footer th:replace="~{layout/plantillaDashboard :: footer-dash}"></footer>
+            </div>
+        </div>
+        
+        <script src="https://cdn.jsdelivr.net/npm/simple-datatables@7.1.2/dist/umd/simple-datatables.min.js" crossorigin="anonymous"></script>
+        <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.3/dist/js/bootstrap.bundle.min.js" crossorigin="anonymous"></script>
+        <script src="/js/scriptsAdmin.js"></script>
+        <script src="/js/datatables-simple-demo.js"></script>
+        
+        <script>
+            function agregarBeneficio() {
+              const beneficiosContainer = document.getElementById('beneficios-container');
+              const nuevoBeneficio = document.createElement('div');
+              nuevoBeneficio.classList.add('mb-3');
+              nuevoBeneficio.innerHTML = `
+                <input type="text" class="form-control" name="beneficios[${beneficiosContainer.children.length}].descripcion" placeholder="Descripción del beneficio">
+                <button type="button" class="btn btn-danger btn-sm" onclick="eliminarBeneficio(this)">Eliminar</button>
+              `;
+              beneficiosContainer.appendChild(nuevoBeneficio);
+            }
+
+            function eliminarBeneficio(button) {
+              const beneficioDiv = button.parentNode;
+              beneficioDiv.remove();
+            }
+        </script>
+
+    </body>
+    
+</html>

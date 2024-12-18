@@ -7,26 +7,30 @@
     </head>
     <body>
         
-        <main th:fragment="listadoCategorias" id="categorias">
-                    <div class="d-flex align-items-center justify-content-between mt-4 mb-0" sec:authorize="hasRole('ROLE_ADMIN')">
-                       <!--<a class="btn btn-primary" href="login.html">Agregar Noticia</a>-->
+        
+        <main th:fragment="listadoUsuarios" id="usuarios">
+                    <div class="d-flex align-items-center justify-content-between mt-4 mb-0">
+                       <!--<a class="btn btn-primary" href="login.html">Agregar Membresía</a>
                        <button 
                             type="button" 
                             class="btn btn-primary" 
                             data-bs-toggle="modal" 
-                            data-bs-target="#agregarCategoria">
+                            data-bs-target="#agregarMembresia">
                             <i class="fas fa-plus"></i> Agregar
-                        </button>
+                        </button>-->
                     </div>
                     <div class="container-fluid px-4">
-                        <h1 class="mt-4">Categorias de Productos</h1>
+                        <h1 class="mt-4">Usuarios Evo</h1>
                         <div class="card mb-4">
-                            <div class="card-body" th:if="${categorias != null and !categorias.empty}"> <!-- Empiezan pruebas de listar membresias-->
+                            <div class="card-body" th:if="${usuarios != null and !usuarios.empty}"> <!-- Empiezan pruebas de listar membresias-->
                                 <table id="datatablesSimple">
                                     <thead>
                                         <tr>
                                             <th>#</th>
-                                            <th>Descripcion</th>
+                                            <th>Usuario</th>
+                                            <th>Nombre</th>
+                                            <th>Apellidos</th>
+                                            <th>Correo</th>
                                             <th>Estado</th>
                                             <th></th>
                                         </tr>
@@ -34,36 +38,43 @@
                                     <tfoot>
                                         <tr>
                                             <th>#</th>
-                                            <th>Descripcion</th>
+                                            <th>Usuario</th>
+                                            <th>Nombre</th>
+                                            <th>Apellidos</th>
+                                            <th>Correo</th>
                                             <th>Estado</th>
                                             <th></th>
                                         </tr>
                                     </tfoot>
                                     <tbody>
-                                        <tr th:each="categorias, contador : ${categorias}">
+                                        <tr th:each="usuarios, contador : ${usuarios}">
                                             <td>[[${contador.count}]]</td> <!-- Pruebas-->
-                                            <td>[[${categorias.descripcion}]]</td>
-                                            <td th:text="${categorias.activo} ? 'Activa' : 'Inactiva'"/>
-                                            <td sec:authorize="hasRole('ROLE_ADMIN')"><a th:href="@{/categorias/eliminar/}+${categorias.idCategoria}"
+                                            <td>[[${usuarios.username}]]</td>
+                                            <td>[[${usuarios.nombre}]]</td>
+                                            <td>[[${usuarios.apellidos}]]</td>
+                                            <td>[[${usuarios.correo}]]</td>
+                                            <td th:text="${usuarios.activo} ? 'Activa' : 'Inactiva'"/>
+                                            <td><a th:href="@{/usuarios/eliminar/}+${usuarios.idUsuarios}"
                                                    class="btn btn-danger">
                                                     <i class="fas fa-trash"></i> Eliminar</a>
                                                 <!--th:href="@{/membresias/modificar/}+${membresias.idMembresia}"-->
-                                                <a th:href="@{/categorias/modificar/}+${categorias.idCategoria}"
+                                                <a th:href="@{/usuarios/modificar/}+${usuarios.idUsuario}"
                                                    class="btn btn-success">
                                                     <i class="fas fa-pencil"></i> Actualizar</a></td>
                                         </tr>
                                     </tbody>
                                 </table>
                             </div>
-                            <div class="text-center p-2" th:if="${categorias == null or categorias.empty}">
+                            <div class="text-center p-2" th:if="${usuarios == null or usuarios.empty}">
                                 <span>Lista Vacia</span>
                             </div>
                         </div>
                     </div>
                 </main>
         
-        <section th:fragment="agregarCategoria">
-            <div id="agregarCategoria" 
+        <!-- Agregar membresia 
+        <section th:fragment="agregarMembresia">
+            <div id="agregarMembresia" 
                  class="modal fade" 
                  tabindex="-1" 
                  aria-labelledby="exampleModalLabel" 
@@ -71,22 +82,42 @@
                 <div class="modal-dialog modal-md">
                     <div class="modal-content">
                         <div class="modal-header bg-info text-white">
-                            <h5 class="modal-title">Agregar categoria</h5>
+                            <h5 class="modal-title">Agregar membresia</h5>
                             <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
                         </div> 
-                        <form th:action="@{/categorias/guardar}" th:object="${categoria}"
+                        <form th:action="@{/membresias/guardar}" th:object="${membresia}"
                               method="POST" class="was-validated" enctype="multipart/form-data">
                             <div class="modal-body">
                                 <div class="mb-3">
-                                    <label for="descripcion">Categoria</label>
+                                    <label for="nombre">Nombre</label>
+                                    <input type="text" class="form-control" name="nombre" required="true"/>
+                                </div>
+                                <div class="mb-3">
+                                    <label for="descripcion">Descripcion</label>
                                     <input type="text" class="form-control" name="descripcion" required="true"/>
                                 </div>
-
+                                <div class="mb-3">
+                                    <label for="precio">Precio</label>
+                                    <input type="text" class="form-control" name="precio" required="true"/>
+                                </div>
+                                <div class="mb-3">
+                                    <label for="destacar">Destacar</label>
+                                    <input class="form-check-input" type="checkbox" name="destacar" id="activo"/>
+                                </div>
                                 <div class="mb-3">
                                     <label for="activo">Activo</label>
                                     <input class="form-check-input" type="checkbox" name="activo" id="activo"/>
                                 </div>
                             </div>
+                            
+                            <h5>Beneficios</h5>
+
+                            <div class="mb-3" id="beneficios-container">
+                            </div>
+
+                            <button type="button" class="btn btn-secondary" onclick="agregarBeneficio()">Agregar Beneficio</button>
+
+              
                             <div class="modal-footer">
                                 <button class="btn btn-primary" type="submit">Guardar</button>
                             </div>
@@ -94,21 +125,20 @@
                     </div>
                 </div>
             </div>
-        </section>
-        
-       
+        </section>-->
+
         <!-- 4 Fragmento que se utiliza en la página modifca.html -->
-        <section th:fragment="editarCategorias">
+        <section th:fragment="editarUsuarios">
             <div class="row">
                 <div class="col-md-2"></div>
                 <div class="col-md-8">
                     <form method="POST"
-                          th:action="@{/categorias/guardar}" 
-                          th:object="${categorias}"
+                          th:action="@{/usuarios/guardar}" 
+                          th:object="${usuarios}"
                           class="was-validated"                          
                           enctype="multipart/form-data">
-                        <input type="hidden" name="idCategoria" th:field="*{idCategoria}"/>
-                        <section th:replace="~{categorias/fragmentos :: botonesEditar}"/>
+                        <input type="hidden" name="idUsuarios" th:field="*{idUsuarios}"/>
+                        <section th:replace="~{usuarios/fragmentos :: botonesEditar}"/>
                         <div id=details>
                             <div class="container">
                                 <div class="row">
@@ -119,11 +149,24 @@
                                             </div>
                                             <div class="card-body">
                                                 <div class="mb-3">
-                                                    <label for="descripcion">Categoria</label>
+                                                    <label for="nombre">Nombre</label>
                                                     <input type="text" class="form-control" 
-                                                           name="descripcion" th:field="*{descripcion}"
+                                                           name="nombre" th:field="*{nombre}"
                                                            required="true">
                                                 </div>
+                                                <div class="mb-3">
+                                                    <label for="apellidos">Apellidos</label>
+                                                    <input type="text" class="form-control" 
+                                                           name="apellidos" th:field="*{apellidos}"
+                                                           required="true">
+                                                </div>
+                                                <div class="mb-3">
+                                                    <label for="correo">Correo</label>
+                                                    <input type="text" class="form-control" 
+                                                           name="correo" th:field="*{correo}"
+                                                           required="true">
+                                                </div>
+                                                
                                                 <div class="mb-3">
                                                     <label for="activo">Activo</label>
                                                     <input class="form-check-input" 
@@ -141,17 +184,18 @@
                 </div>
             </div>
         </section>
+
         <!-- 5 Fragmento que se utiliza en el fragmento anterior -->
         <section th:fragment="botonesEditar">
             <div class="container py-4 mb-4 bg-light">
                 <div class="row">
                     <div class="col-md-4 d-grid">
-                        <a th:href="@{/categorias/listado}" class="btn btn-primary">
+                        <a th:href="@{/usuarios/listado}" class="btn btn-primary">
                             <i class="fas fa-arrow-left"></i> Regresar
                         </a>
                     </div>
                     <div class="col-md-4 d-grid">                                
-                        <a th:href="@{/categorias/eliminar/}+${categoria.idCategoria}"
+                        <a th:href="@{/usuarios/eliminar/}+${usuarios.idUsuario}"
                            class="btn btn-danger">
                             <i class="fas fa-trash"></i> Eliminar
                         </a>

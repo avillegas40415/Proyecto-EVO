@@ -70,28 +70,36 @@ public class ProjectConfig implements WebMvcConfigurer {
     public SecurityFilterChain securityFilterChain(HttpSecurity http) throws Exception {
         http
                 .authorizeHttpRequests((request) -> request
-                .requestMatchers("/","/index","/noticias/listado","/nosotros/**",
+                .requestMatchers("/","/index/**","/noticias/listado","/nosotros/**",
                         "/gimnasio/**","/planes/**","/productos/**",
-                        "/contacto/**","/carrito/**","/login/",
+                        "/contacto/**","/carrito/**","/login/","/registro/**",
                         "/js/**","/webjars/**","/css/**","/assets/**")
                         .permitAll()
                 .requestMatchers(
                         "/dashboard",
-                        
-                        "/producto/guardar",
-                        "/producto/modificar/**","/producto/eliminar/**",
-                        "/categoria/nuevo","/categoria/guardar",
-                        "/categoria/modificar/**","/categoria/eliminar/**",
-                        "/usuario/nuevo","/usuario/guardar",
-                        "/usuario/modificar/**","/usuario/eliminar/**",
-                        "/reportes/**"
+                        "/productos/nuevo","/productos/guardar","/productos/modificar/**","/productos/eliminar/**",
+                        "/categorias/nuevo","/categorias/guardar","/categorias/modificar/**","/categorias/eliminar/**",
+                        "/usuarios/nuevo","/usuarios/guardar","/usuarios/modificar/**","/usuarios/eliminar/**",
+                        "/noticias/nuevo","/noticias/guardar","/noticias/modificar/**","/noticias/eliminar/**",
+                        "/membresias/nuevo","/membresias/guardar","/membresias/modificar/**","/membresias/eliminar/**",
+                        "/reportes/**",
+                        "/productos/listado",
+                        "/categorias/listado",
+                        "/usuarios/listado",
+                        "/noticias/listado",
+                        "/membresias/listado"
                 ).hasRole("ADMIN")
                 .requestMatchers(
-                        "/producto/listado",
-                        "/categoria/listado",
-                        "/usuario/listado"
-                ).hasAnyRole("ADMIN", "VENDEDOR")
-                .requestMatchers("/facturar/carrito","/perfil")
+                        "/dashboard",
+                        "/productos/listado",
+                        "/categorias/listado",
+                        "/usuarios/listado",
+                        "/noticias/listado",
+                        "/membresias/listado"
+                ).hasRole("VENDEDOR")
+                 //.hasAnyRole("ADMIN", "VENDEDOR")       
+                .requestMatchers(
+                        "/facturar/carrito","/perfil/**")
                 .hasRole("USER")
                 )
                 .formLogin((form) -> form
